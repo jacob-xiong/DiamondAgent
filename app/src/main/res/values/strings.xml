@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DiamondAgent</string>
+    <string name="diamond_agent_center_title">钻石代理商</string>
+    <string name="diamond_agent_center_right">说明</string>
+</resources>

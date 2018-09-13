@@ -1,0 +1,54 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/action_bar_bg</item>
+        <item name="colorPrimaryDark">@color/action_bar_bg</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="action_bar_title">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
+    <style name="action_bar_right">
+        <item name="android:textColor">#e60012</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="text_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp48</item>
+        <item name="android:layout_marginTop">@dimen/dp12</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="center_text">
+        <item name="android:textColor">#e60012</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="MyDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--dialog弹出动画-->
+    <style name="BottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_push_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_push_out</item>
+    </style>
+
+</resources>
