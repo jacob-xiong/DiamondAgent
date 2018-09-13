@@ -1,18 +1,0 @@
-
-Ssquid:S1444"2Make this "public static SCREEN_WIDTH" field final(ĞüœÙøÿÿÿÿ8Ä¹­İÜ,
-osquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(±ø²î8Ä¹­İÜ,
-tsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(•¨†ùÿÿÿÿ8Ä¹­İÜ,
-tsquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.( êèóıÿÿÿÿ8Ä¹­İÜ,
-Tsquid:S1444"3Make this "public static SCREEN_HEIGHT" field final(±Ñó»üÿÿÿÿ8Ä¹­İÜ,
-‹"squid:ClassVariableVisibilityCheck"XMake VERSION_CODE a static final constant or non-public and provide accessors if needed.(«öˆ¦8Ä¹­İÜ,
-"squid:ClassVariableVisibilityCheck"XMake VERSION_NAME a static final constant or non-public and provide accessors if needed.(í¾ÀÇøÿÿÿÿ8Ä¹­İÜ,
-ysquid:S3008"XRename this field "SCREEN_HEIGHT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±Ñó»üÿÿÿÿ8Ä¹­İÜ,
-‘"squid:ClassVariableVisibilityCheck"YMake SCREEN_HEIGHT a static final constant or non-public and provide accessors if needed.(±Ñó»üÿÿÿÿ8Ä¹­İÜ,
-osquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(ÅÈõå8Ä¹­İÜ,
-xsquid:S3008"WRename this field "SCREEN_WIDTH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞüœÙøÿÿÿÿ8Ä¹­İÜ,
-Nsquid:S1444"2Make this "public static VERSION_CODE" field final(«öˆ¦8Ä¹­İÜ,
-Vsquid:S1118":Add a private constructor to hide the implicit public one.(Óùÿ¿8Ä¹­İÜ,
-xsquid:S3008"WRename this field "VERSION_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í¾ÀÇøÿÿÿÿ8Ä¹­İÜ,
-Ssquid:S1444"2Make this "public static VERSION_NAME" field final(í¾ÀÇøÿÿÿÿ8Ä¹­İÜ,
-ssquid:S3008"WRename this field "VERSION_CODE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«öˆ¦8Ä¹­İÜ,
-"squid:ClassVariableVisibilityCheck"XMake SCREEN_WIDTH a static final constant or non-public and provide accessors if needed.(ĞüœÙøÿÿÿÿ8Ä¹­İÜ,

@@ -1,6 +1,7 @@
 package diamond.agent.mvp.model;
 
 import diamond.agent.mvp.data.BaseResultData;
+import diamond.agent.mvp.data.InvitationCodeResultData;
 
 /**
  * @author by xiongyan on 2018/9/12.
@@ -18,5 +19,21 @@ public interface BaseDataBridge<T extends BaseResultData> {
      */
     void onFailure(Throwable throwable);
 
+
+    /**
+     * 获取邀请码回调
+     */
+    /**
+     * 测试回调
+     */
+    interface InvitationCodeDataBridge extends BaseDataBridge<BaseResultData<InvitationCodeResultData>> {
+
+
+        void getInvitationCodeSuccess(BaseResultData<InvitationCodeResultData> resultData);
+
+
+        void getInvitationCodeFail(String msg);
+
+    }
 
 }
