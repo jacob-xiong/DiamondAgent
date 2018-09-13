@@ -61,8 +61,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends FragmentActi
     private void initStateBar() {
         Sofia.with(this)
                 .statusBarDarkFont()
-                .statusBarBackground(ContextCompat.getColor(this, R.color.action_bar_bg))
-                .navigationBarBackground(ContextCompat.getColor(this, R.color.action_bar_bg));
+                .statusBarBackground(ContextCompat.getColor(this, R.color.action_bar_bg));
+//                .navigationBarBackground(ContextCompat.getColor(this, R.color.action_bar_bg));
     }
 
 

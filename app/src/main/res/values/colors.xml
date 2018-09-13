@@ -4,8 +4,14 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
-    <color name="main_bg">#F7F7F7</color>
+    <color name="main_bg">#fff3f3f3</color>
     <color name="action_bar_lin">#ffeaecee</color>
     <color name="action_bar_bg">#eeeeee</color>
     <color name="selected_list_divider">#DAD9DB</color>
+    <color name="black">#000000</color>
+    <color name="center_balance_text_color">#BA55D3</color>
+    <color name="center_surplus_days">#1E90FF</color>
+    <color name="center_head_bg">#FF8C00</color>
+    <color name="center_title_tv_bg">#FF8C00</color>
+    <color name="center_title_bg">#FFA500</color>
 </resources>

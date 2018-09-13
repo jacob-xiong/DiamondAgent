@@ -2,4 +2,10 @@
     <string name="app_name">DiamondAgent</string>
     <string name="diamond_agent_center_title">钻石代理商</string>
     <string name="diamond_agent_center_right">说明</string>
+    <string name="diamond_agent_center_num">我的编号：%1$s</string>
+    <string name="diamond_agent_center_superior">我的上级：%1$s</string>
+    <string name="diamond_agent_center_today_title">今日返利</string>
+    <string name="diamond_agent_center_this_month_title">本月返利</string>
+    <string name="diamond_agent_center_all_title">全部返利</string>
+    <string name="diamond_agent_center_surplus_days_title">无限开单特权与钻石代理商剩余天数：%1$s天</string>
 </resources>

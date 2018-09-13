@@ -8,12 +8,12 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="#FF8C00" />
+        android:background="@color/center_head_bg" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFA500"
+        android:background="@color/center_title_bg"
         android:paddingBottom="10dp"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
@@ -79,14 +79,13 @@
                     style="@style/center_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="今日返利" />
+                    android:text="@string/diamond_agent_center_today_title" />
 
                 <TextView
                     android:id="@+id/center_today_yuan"
                     style="@style/center_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0元" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -103,14 +102,13 @@
                     style="@style/center_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="本月返利" />
+                    android:text="@string/diamond_agent_center_this_month_title" />
 
                 <TextView
                     android:id="@+id/center_this_month_yuan"
                     style="@style/center_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0元" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -126,14 +124,13 @@
                     style="@style/center_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="全部返利" />
+                    android:text="@string/diamond_agent_center_all_title" />
 
                 <TextView
                     android:id="@+id/center_all_yuan"
                     style="@style/center_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0元" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -147,8 +144,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/center_logo"
-            android:text="无限开单特权与钻石代理商剩余天数：365天"
-            android:textColor="#1E90FF"
+            android:textColor="@color/center_surplus_days"
             android:textSize="12sp" />
     </RelativeLayout>
 
