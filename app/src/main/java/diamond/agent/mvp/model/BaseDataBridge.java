@@ -1,5 +1,6 @@
 package diamond.agent.mvp.model;
 
+import diamond.agent.mvp.data.AgentCenterData;
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.InvitationCodeResultData;
 
@@ -13,6 +14,7 @@ public interface BaseDataBridge<T extends BaseResultData> {
      * @param data 成功后返回的数据
      */
     void onSuccess(T data);
+
 
     /**
      * 通用的失败回调方法
@@ -33,6 +35,16 @@ public interface BaseDataBridge<T extends BaseResultData> {
 
 
         void getInvitationCodeFail(String msg);
+
+    }
+
+    interface AgentCenterDataBridge extends BaseDataBridge<BaseResultData<AgentCenterData>> {
+        void getUserInfoSuccess(BaseResultData<AgentCenterData> resultData);
+
+        void getUserInfoFail(String msg);
+
+        void startWithDrawSuccess(BaseResultData baseResultData);
+        void startWithDrawFail(String msg);
 
     }
 

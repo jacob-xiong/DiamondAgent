@@ -45,7 +45,8 @@
             android:gravity="center"
             android:text="@string/diamond_agent_center_pay_button"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp14" />
+            android:textSize="@dimen/sp14"
+            android:id="@+id/center_buy_button"/>
 
         <TextView
             android:layout_width="match_parent"

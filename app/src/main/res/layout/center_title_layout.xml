@@ -45,7 +45,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/center_yuan_view"
+        android:id="@+id/center_amount_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/center_title_view"
@@ -76,7 +76,7 @@
                     android:text="@string/diamond_agent_center_today_title" />
 
                 <TextView
-                    android:id="@+id/center_today_yuan"
+                    android:id="@+id/center_today_amount"
                     style="@style/center_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -104,7 +104,7 @@
                     android:text="@string/diamond_agent_center_this_month_title" />
 
                 <TextView
-                    android:id="@+id/center_this_month_yuan"
+                    android:id="@+id/center_this_month_amount"
                     style="@style/center_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -132,7 +132,7 @@
                     android:text="@string/diamond_agent_center_all_title" />
 
                 <TextView
-                    android:id="@+id/center_all_yuan"
+                    android:id="@+id/center_all_amount"
                     style="@style/center_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -145,7 +145,7 @@
         android:id="@+id/center_surplus_days"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/center_yuan_view"
+        android:layout_below="@+id/center_amount_view"
         android:layout_marginLeft="@dimen/dp12"
         android:layout_marginTop="@dimen/dp5"
         android:layout_toRightOf="@+id/center_logo"

@@ -11,7 +11,7 @@
         android:background="@color/selected_list_divider" />
 
     <RelativeLayout
-        android:id="@+id/qr_code_logo_view"
+        android:id="@+id/qr_code_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp40"
         android:paddingLeft="@dimen/dp12"
@@ -51,7 +51,7 @@
         android:background="@color/selected_list_divider" />
 
     <RelativeLayout
-        android:id="@+id/member_list_logo_view"
+        android:id="@+id/member_list_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp40"
         android:paddingLeft="@dimen/dp12"
@@ -91,7 +91,7 @@
         android:background="@color/selected_list_divider" />
 
     <RelativeLayout
-        android:id="@+id/balance_logo_view"
+        android:id="@+id/balance_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp40"
         android:paddingLeft="@dimen/dp12"
@@ -134,7 +134,7 @@
         android:background="@color/selected_list_divider" />
 
     <RelativeLayout
-        android:id="@+id/renew_logo_view"
+        android:id="@+id/renew_view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp40"
         android:paddingLeft="@dimen/dp12"
