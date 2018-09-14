@@ -56,69 +56,87 @@
 
         <LinearLayout
             android:id="@+id/center_today_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingRight="@dimen/dp20">
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/center_text"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/diamond_agent_center_today_title" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/center_today_yuan"
-                style="@style/center_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
+                <TextView
+                    style="@style/center_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/diamond_agent_center_today_title" />
+
+                <TextView
+                    android:id="@+id/center_today_yuan"
+                    style="@style/center_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/center_this_month_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/dp20"
-            android:paddingRight="@dimen/dp20">
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/center_text"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/diamond_agent_center_this_month_title" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/center_this_month_yuan"
-                style="@style/center_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <TextView
+                    style="@style/center_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/diamond_agent_center_this_month_title" />
 
+                <TextView
+                    android:id="@+id/center_this_month_yuan"
+                    style="@style/center_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/center_all_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/dp20">
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/center_text"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/diamond_agent_center_all_title" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/center_all_yuan"
-                style="@style/center_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <TextView
+                    style="@style/center_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/diamond_agent_center_all_title" />
 
+                <TextView
+                    android:id="@+id/center_all_yuan"
+                    style="@style/center_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
