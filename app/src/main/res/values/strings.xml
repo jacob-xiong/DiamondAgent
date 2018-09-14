@@ -8,4 +8,9 @@
     <string name="diamond_agent_center_this_month_title">本月返利</string>
     <string name="diamond_agent_center_all_title">全部返利</string>
     <string name="diamond_agent_center_surplus_days_title">无限开单特权与钻石代理商剩余天数：%1$s天</string>
+    <string name="diamond_agent_center_qr_code_title">我的二维码与邀请码</string>
+    <string name="diamond_agent_center_member_list_title">成员列表</string>
+    <string name="diamond_agent_center_balance_title">余额：%1$s</string>
+    <string name="diamond_agent_center_balance_take">提现</string>
+    <string name="diamond_agent_center_renew_logo_title">续费钻石代理商及一年无限开单特权%1$s</string>
 </resources>

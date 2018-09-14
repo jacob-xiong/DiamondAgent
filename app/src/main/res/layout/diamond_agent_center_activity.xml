@@ -7,22 +7,22 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="@dimen/dp12"
         android:background="@color/center_head_bg" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/center_title_bg"
-        android:paddingBottom="10dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="10dp">
+        android:paddingBottom="@dimen/dp10"
+        android:paddingLeft="@dimen/dp12"
+        android:paddingRight="@dimen/dp12"
+        android:paddingTop="@dimen/dp10">
 
         <ImageView
             android:id="@+id/center_logo"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/dp45"
+            android:layout_height="@dimen/dp45"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="@drawable/center_logo" />
@@ -31,7 +31,7 @@
             android:id="@+id/center_title_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/dp12"
             android:layout_toRightOf="@+id/center_logo"
             android:orientation="horizontal">
 
@@ -42,8 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:maxLines="1"
-                android:text="我的编号：" />
+                android:maxLines="1" />
 
             <TextView
                 android:id="@+id/center_superior"
@@ -52,8 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:maxLines="1"
-                android:text="我的上级：" />
+                android:maxLines="1" />
 
         </LinearLayout>
 
@@ -62,8 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/center_title_view"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_marginTop="@dimen/dp5"
             android:layout_toRightOf="@+id/center_logo"
             android:orientation="horizontal">
 
@@ -73,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingRight="20dp">
+                android:paddingRight="@dimen/dp20">
 
                 <TextView
                     style="@style/center_text"
@@ -95,8 +93,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                android:paddingLeft="@dimen/dp20"
+                android:paddingRight="@dimen/dp20">
 
                 <TextView
                     style="@style/center_text"
@@ -118,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingLeft="20dp">
+                android:paddingLeft="@dimen/dp20">
 
                 <TextView
                     style="@style/center_text"
@@ -141,11 +139,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/center_yuan_view"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_marginTop="@dimen/dp5"
             android:layout_toRightOf="@+id/center_logo"
             android:textColor="@color/center_surplus_days"
-            android:textSize="12sp" />
+            android:textSize="@dimen/sp12" />
     </RelativeLayout>
 
 </LinearLayout>

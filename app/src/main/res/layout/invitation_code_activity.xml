@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bg">
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="@dimen/dp10"
         android:background="@color/center_head_bg" />
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/bar_code"
+        android:layout_height="@dimen/bar_code"
         android:layout_gravity="center_horizontal"
-        android:paddingTop="30dp"
-        android:background="@drawable/center_logo"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"/>
+        android:layout_marginTop="@dimen/dp20"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bar_code" />
 
 
 </LinearLayout>

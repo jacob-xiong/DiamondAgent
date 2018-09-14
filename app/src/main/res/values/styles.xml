@@ -32,7 +32,7 @@
 
     <style name="center_text">
         <item name="android:textColor">@color/center_title_tv_bg</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">@dimen/sp15</item>
     </style>
 
     <style name="MyDialog" parent="@android:style/Theme.Dialog">

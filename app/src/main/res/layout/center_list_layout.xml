@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/qr_code_logo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="@drawable/center_logo" />
@@ -29,11 +29,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/dp5"
             android:layout_toRightOf="@+id/qr_code_logo"
-            android:text="我的二维码与邀请码"
+            android:text="@string/diamond_agent_center_qr_code_title"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/sp14"
             android:textStyle="bold" />
 
         <ImageView
@@ -59,8 +59,8 @@
 
         <ImageView
             android:id="@+id/member_list_logo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="@drawable/center_logo" />
@@ -69,11 +69,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/dp5"
             android:layout_toRightOf="@+id/member_list_logo"
-            android:text="成员列表"
+            android:text="@string/diamond_agent_center_member_list_title"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/sp14"
             android:textStyle="bold" />
 
         <ImageView
@@ -99,33 +99,32 @@
 
         <ImageView
             android:id="@+id/balance_logo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="@drawable/center_logo" />
 
         <TextView
-            android:id="@+id/balance_logo_title"
+            android:id="@+id/balance_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/dp5"
             android:layout_toRightOf="@+id/balance_logo"
-            android:text="余额："
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp14" />
 
         <TextView
-            android:id="@+id/balance_logo_take"
+            android:id="@+id/balance_take"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/dp5"
             android:background="@drawable/center_balance_text_bg"
-            android:text="提现"
+            android:text="@string/diamond_agent_center_balance_take"
             android:textColor="@color/center_balance_text_color"
-            android:textSize="14sp" />
+            android:textSize="@dimen/sp14" />
 
     </RelativeLayout>
 
@@ -143,22 +142,20 @@
 
         <ImageView
             android:id="@+id/renew_logo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:background="@drawable/center_logo" />
 
         <TextView
-            android:id="@+id/renew_logo_title"
+            android:id="@+id/renew_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/dp5"
             android:layout_toRightOf="@+id/renew_logo"
-            android:text="续费"
-            android:textColor="#333333"
-            android:textSize="14sp"
+            android:textSize="@dimen/sp14"
             android:textStyle="bold" />
 
 
