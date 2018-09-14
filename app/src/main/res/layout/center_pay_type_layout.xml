@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp20"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp12"
+    android:paddingRight="@dimen/dp12">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/diamond_agent_center_payment_method_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp12" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp12"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/pay_type_bg">
+
+        <ImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/alipay" />
+
+        <CheckBox
+            android:id="@+id/alipay_checkbox"
+            android:layout_width="@dimen/dp25"
+            android:layout_height="@dimen/dp25"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/check_box_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center" />
+    </RelativeLayout>
+</LinearLayout>

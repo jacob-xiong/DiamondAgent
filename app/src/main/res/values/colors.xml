@@ -14,4 +14,6 @@
     <color name="center_head_bg">#FF8C00</color>
     <color name="center_title_tv_bg">#FF8C00</color>
     <color name="center_title_bg">#FFA500</color>
+    <color name="transparent">#00000000</color>
+    <color name="pay_type_stroke">#FFC125</color>
 </resources>

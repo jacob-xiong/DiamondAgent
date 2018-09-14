@@ -13,4 +13,7 @@
     <string name="diamond_agent_center_balance_title">余额：%1$s</string>
     <string name="diamond_agent_center_balance_take">提现</string>
     <string name="diamond_agent_center_renew_logo_title">续费钻石代理商及一年无限开单特权%1$s</string>
+    <string name="diamond_agent_center_payment_method_title">支付方式</string>
+    <string name="diamond_agent_center_pay_button">购买</string>
+    <string name="diamond_agent_center_pay_button_explain">购买代理商的资格费用不可退款和提现，仅支持推广返利提现</string>
 </resources>
