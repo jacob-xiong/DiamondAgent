@@ -13,11 +13,17 @@
     <string name="diamond_agent_center_surplus_days_title">无限开单特权与钻石代理商剩余天数：%1$s天</string>
     <string name="diamond_agent_center_qr_code_title">我的二维码与邀请码</string>
     <string name="diamond_agent_center_member_list_title">成员列表</string>
-    <string name="diamond_agent_center_balance_title"><Data><![CDATA[余额：<font color="#BA55D3">%1$s</front>]]></Data></string>
+    <string name="diamond_agent_center_balance_title">余额：%1$s</string>
     <string name="diamond_agent_center_balance_take">提现</string>
-    <string name="diamond_agent_center_renew_logo_title"><Data><![CDATA[<font color="#EEEEEE">续费 </front><font color="#8EE5EE">钻石代理商及一年无限开单特权 </front><font color="#000000">%1$s元</front>]]></Data></string>
+    <string name="diamond_agent_center_renew_logo_title">续费 钻石代理商及一年无限开单特权 %1$s元</string>
     <string name="diamond_agent_center_payment_method_title">支付方式</string>
     <string name="diamond_agent_center_pay_button">购买</string>
     <string name="diamond_agent_center_pay_button_explain">购买代理商的资格费用不可退款和提现，仅支持推广返利提现</string>
     <string name="diamond_agent_center_no_pay_type_toast">请选择支付方式</string>
+    <string name="diamond_agent_invitation_code_title">注意事项：</string>
+    <string name="diamond_agent_invitation_code_title_first">如果被邀请的客户未下载过蜜蜂出行APP请扫描此二维码</string>
+    <string name="diamond_agent_invitation_code_title_second">如果被邀请的客户是蜜蜂出行的老用户请发送邀请码，并让被邀请客户输入邀请码</string>
+    <string name="diamond_agent_invitation_code">邀请码：%1$s</string>
+
+
 </resources>

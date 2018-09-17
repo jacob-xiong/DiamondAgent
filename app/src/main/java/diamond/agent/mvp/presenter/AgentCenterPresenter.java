@@ -32,7 +32,7 @@ public class AgentCenterPresenter extends BasePresenter<AgentCenterView, AgentCe
 
     @Override
     public void onFailure(Throwable throwable) {
-
+        view.loadFailure(throwable);
     }
 
     @Override

@@ -1,22 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg"
-    android:orientation="vertical">
+    android:scrollbars="none">
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp10"
-        android:background="@color/center_head_bg" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="@dimen/bar_code"
-        android:layout_height="@dimen/bar_code"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp20"
-        android:scaleType="fitCenter"
-        android:src="@drawable/bar_code" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp10"
+            android:background="@color/center_head_bg" />
 
+        <ImageView
+            android:layout_width="@dimen/bar_code"
+            android:layout_height="@dimen/bar_code"
+            android:layout_gravity="center_horizontal"
+            android:padding="@dimen/dp20"
+            android:scaleType="fitCenter"
+            android:src="@drawable/bar_code" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp20"
+            android:text="@string/diamond_agent_invitation_code_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp14"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/dp12"
+            android:text="@string/diamond_agent_invitation_code_title_first"
+            android:textColor="@color/code_first"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/dp12"
+            android:text="@string/diamond_agent_invitation_code_title_second"
+            android:textColor="@color/center_surplus_days"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/invitation_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold"
+            android:visibility="gone" />
+    </LinearLayout>
+</ScrollView>

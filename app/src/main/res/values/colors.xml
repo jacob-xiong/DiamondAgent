@@ -16,4 +16,5 @@
     <color name="center_title_bg">#FFA500</color>
     <color name="transparent">#00000000</color>
     <color name="pay_type_stroke">#FFC125</color>
+    <color name="code_first">#e60012</color>
 </resources>

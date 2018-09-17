@@ -2,8 +2,12 @@ package diamond.agent.activity;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -103,7 +107,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
     }
 
     @OnClick({R.id.alipay_checkbox, R.id.center_buy_button, R.id.balance_take, R.id.action_right_tv, R.id.qr_code_view})
-    private void onViewClick(View view) {
+    void onViewClick(View view) {
         if (isGetDataSuccess) {
             switch (view.getId()) {
                 case R.id.alipay_checkbox:
@@ -183,9 +187,8 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
         mCenterMonthAmount.setText(getAmount(AMOUNT_MONTH));
         mCenterAllAmount.setText(getAmount(AMOUNT_ALL));
         mCenterSurplusDays.setText(getString(R.string.diamond_agent_center_surplus_days_title, getDefaultZero(mAgentCenterData.getSurplusDays())));
-        mCenterBalanceTitle.setText(Html.fromHtml(getResources().getString(R.string.diamond_agent_center_balance_title, ("￥" + getDefaultZero(mAgentCenterData.getUserBalance())))));
-        mCenterRenenTitle.setText(Html.fromHtml(getResources().getString(R.string.diamond_agent_center_renew_logo_title, getDefaultZero(mAgentCenterData.getRenewPrice()))));
-
+        mCenterBalanceTitle.setText(getBalanceTitle(getResources().getString(R.string.diamond_agent_center_balance_title, ("￥" + getDefaultZero(mAgentCenterData.getUserBalance())))));
+        mCenterRenenTitle.setText(getRenenTitle(getResources().getString(R.string.diamond_agent_center_renew_logo_title, getDefaultZero(mAgentCenterData.getRenewPrice()))));
     }
 
     @Override
@@ -207,6 +210,20 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
 
     @Override
     public void loadFailure(Throwable throwable) {
+        mAgentCenterData = new AgentCenterData();
+        mAgentCenterData.setAllAmount("100");
+        mAgentCenterData.setMonthAmount("50");
+        mAgentCenterData.setRenewPrice("200");
+        mAgentCenterData.setSurplusDays("700");
+        mAgentCenterData.setTodayAmount("10");
+        mAgentCenterData.setUserBalance("1000");
+        mAgentCenterData.setUserNum("9527");
+        mAgentCenterData.setUserSuperior("7592");
+        if (mAgentCenterData != null) {
+            isGetDataSuccess = true;
+            mCenterALiPayCheckBox.setEnabled(true);
+            setDataToView();
+        }
 
     }
 
@@ -245,10 +262,27 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
             case AMOUNT_ALL:
                 amount = mAgentCenterData.getAllAmount();
                 break;
+            default:
+                break;
 
         }
         return getString(R.string.diamond_agent_center_amount, getDefaultZero(amount));
 
+    }
+
+    private SpannableStringBuilder getRenenTitle(String str) {
+        SpannableStringBuilder style = new SpannableStringBuilder(str);
+        style.setSpan((new ForegroundColorSpan(Color.parseColor("#999999"))), 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan((new ForegroundColorSpan(Color.parseColor("#1E90FF"))), 3, 17, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan((new ForegroundColorSpan(Color.parseColor("#000000"))), 18, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return style;
+    }
+
+    private SpannableStringBuilder getBalanceTitle(String str){
+        SpannableStringBuilder style = new SpannableStringBuilder(str);
+        style.setSpan((new ForegroundColorSpan(Color.parseColor("#999999"))), 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan((new ForegroundColorSpan(Color.parseColor("#BA55D3"))), 3, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return style;
     }
 
 }
