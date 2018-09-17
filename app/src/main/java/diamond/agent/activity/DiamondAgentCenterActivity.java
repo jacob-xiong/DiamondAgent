@@ -106,7 +106,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
 
     }
 
-    @OnClick({R.id.alipay_checkbox, R.id.center_buy_button, R.id.balance_take, R.id.action_right_tv, R.id.qr_code_view})
+    @OnClick({R.id.alipay_checkbox, R.id.center_buy_button, R.id.balance_take, R.id.action_right_tv, R.id.qr_code_view,R.id.member_list_view})
     void onViewClick(View view) {
         if (isGetDataSuccess) {
             switch (view.getId()) {

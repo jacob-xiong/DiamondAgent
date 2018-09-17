@@ -24,6 +24,12 @@
     <string name="diamond_agent_invitation_code_title_first">如果被邀请的客户未下载过蜜蜂出行APP请扫描此二维码</string>
     <string name="diamond_agent_invitation_code_title_second">如果被邀请的客户是蜜蜂出行的老用户请发送邀请码，并让被邀请客户输入邀请码</string>
     <string name="diamond_agent_invitation_code">邀请码：%1$s</string>
+    <string name="diamond_agent_consumer_title_one">一级消费者成员</string>
+    <string name="diamond_agent_consumer_title_two">二级消费者成员</string>
+    <string name="diamond_agent_consumer_title_three">三级消费者成员</string>
+    <string name="diamond_agent_consumer_already_use">已消费</string>
+    <string name="diamond_agent_consumer_extract">提成</string>
+    <string name="diamond_agent_consumer_in_total">总共</string>
 
 
 </resources>
