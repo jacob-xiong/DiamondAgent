@@ -1,11 +1,14 @@
 package diamond.agent.activity;
 
 
+import android.content.Intent;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -14,15 +17,18 @@ import diamond.agent.mvp.data.AgentCenterData;
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.presenter.AgentCenterPresenter;
 import diamond.agent.mvp.view.AgentCenterView;
+import diamond.agent.utils.FastClickUtils;
+import diamond.agent.utils.ToastUtils;
 
 /**
  * @author by xiongyan on 2018/9/13.
- *         钻石代理商中心页面
+ * 钻石代理商中心页面
  */
 public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresenter> implements AgentCenterView {
     private final int AMOUNT_DAY = 1;
     private final int AMOUNT_MONTH = 2;
     private final int AMOUNT_ALL = 3;
+    public static final String USER_ID = "user_id";
 
     @BindView(R.id.center_logo)
     ImageView mCenterLogo;
@@ -53,6 +59,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
     @BindView(R.id.center_buy_button)
     TextView mCenterBuyBt;
     private AgentCenterData mAgentCenterData;
+    private boolean isGetDataSuccess = false;
 
 
     @Override
@@ -95,8 +102,66 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
 
     }
 
-    @OnClick({})
+    @OnClick({R.id.alipay_checkbox, R.id.center_buy_button, R.id.balance_take, R.id.action_right_tv, R.id.qr_code_view})
     private void onViewClick(View view) {
+        if (isGetDataSuccess) {
+            switch (view.getId()) {
+                case R.id.alipay_checkbox:
+                    mCenterALiPayCheckBox.setChecked(!mCenterALiPayCheckBox.isChecked());
+                    break;
+                case R.id.center_buy_button:
+                    if (FastClickUtils.isNormalClick()) {
+                        if (mCenterALiPayCheckBox.isChecked()) {
+                            /**
+                             * 发起支付
+                             */
+                        } else {
+                            ToastUtils.show(this, R.string.diamond_agent_center_no_pay_type_toast, Toast.LENGTH_SHORT);
+                        }
+                    }
+                    break;
+                case R.id.balance_take:
+                    /**
+                     * 提现
+                     */
+                    if (FastClickUtils.isNormalClick()) {
+
+                    }
+                    break;
+                case R.id.action_right_tv:
+                    /**
+                     * 说明
+                     */
+                    if (FastClickUtils.isNormalClick()) {
+
+                    }
+                    break;
+                case R.id.qr_code_view:
+                    /**
+                     * 跳转二维码页面
+                     */
+                    if (FastClickUtils.isNormalClick()) {
+                        Intent intent = new Intent(DiamondAgentCenterActivity.this, InvitationCodeActivity.class);
+                        intent.putExtra(USER_ID, "ID");
+                        startActivity(intent);
+
+                    }
+                    break;
+                case R.id.member_list_view:
+                    /**
+                     * 跳转成员列表
+                     */
+                    if (FastClickUtils.isNormalClick()) {
+                        Intent intent = new Intent(DiamondAgentCenterActivity.this, MemberListActivity.class);
+                        intent.putExtra(USER_ID, "ID");
+                        startActivity(intent);
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
 
     }
 
@@ -105,6 +170,8 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
     public void getUserInfoSuccess(AgentCenterData data) {
         mAgentCenterData = data;
         if (mAgentCenterData != null) {
+            isGetDataSuccess = true;
+            mCenterALiPayCheckBox.setEnabled(true);
             setDataToView();
         }
     }
@@ -116,12 +183,16 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
         mCenterMonthAmount.setText(getAmount(AMOUNT_MONTH));
         mCenterAllAmount.setText(getAmount(AMOUNT_ALL));
         mCenterSurplusDays.setText(getString(R.string.diamond_agent_center_surplus_days_title, getDefaultZero(mAgentCenterData.getSurplusDays())));
+        mCenterBalanceTitle.setText(Html.fromHtml(getResources().getString(R.string.diamond_agent_center_balance_title, ("￥" + getDefaultZero(mAgentCenterData.getUserBalance())))));
+        mCenterRenenTitle.setText(Html.fromHtml(getResources().getString(R.string.diamond_agent_center_renew_logo_title, getDefaultZero(mAgentCenterData.getRenewPrice()))));
 
     }
 
     @Override
     public void getUserInfoFail(String msg) {
-
+        isGetDataSuccess = false;
+        mCenterALiPayCheckBox.setEnabled(false);
+        ToastUtils.show(this, msg, Toast.LENGTH_SHORT);
     }
 
     @Override

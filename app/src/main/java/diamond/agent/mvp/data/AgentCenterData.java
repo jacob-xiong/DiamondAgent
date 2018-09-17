@@ -14,7 +14,7 @@ public class AgentCenterData implements Serializable {
     private String allAmount;
     private String surplusDays;
     private String userBalance;
-    private String renewPrice;
+    private String renewPrice = String.valueOf(199);
 
 
     public String getUserNum() {

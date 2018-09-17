@@ -24,7 +24,7 @@ public interface ApiService {
      * @param id
      * @return
      */
-    @POST()
+    @POST("XXX/XXX")
     Observable<BaseResultData<AgentCenterData>> getUserInfo(@Query("id") String id);
 
     /**
