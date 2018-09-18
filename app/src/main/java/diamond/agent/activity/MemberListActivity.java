@@ -34,11 +34,16 @@ public class MemberListActivity extends BaseActivity {
         for(int i=0;i<3;i++){
             View view=LayoutInflater.from(this).inflate(R.layout.member_group_list_item, mGroupListView, false);
             LinearLayout list_item_view= (LinearLayout) view.findViewById(R.id.member_group_list_item_view);
-            for(int j=0;j<4;j++){
+            for(int j=0;j<6;j++){
                 View itemView=LayoutInflater.from(this).inflate(R.layout.member_group_value_item, list_item_view, false);
                 if(j==0){
-                    itemView.setPadding(0,0,0,10);
+                    itemView.setPadding(0,0,0,15);
+                }else if(j==5){
+                    itemView.setPadding(0,15,0,5);
+                }else{
+                    itemView.setPadding(0,0,0,0);
                 }
+
 
                 list_item_view.addView(itemView);
 
