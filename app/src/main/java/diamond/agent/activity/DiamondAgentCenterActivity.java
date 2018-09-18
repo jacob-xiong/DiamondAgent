@@ -233,6 +233,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
     }
 
     private void getUserInfoData() {
+        System.out.println("===============1================");
         if (presenter != null) {
             presenter.getUserInfo("ID");
         }

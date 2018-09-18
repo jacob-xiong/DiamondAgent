@@ -1,18 +1,21 @@
 package diamond.agent.activity;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 
 import butterknife.BindView;
 import diamond.agent.R;
+import diamond.agent.adapter.MemberListTabLayoutAdapter;
 
 /**
  * @author by xiongyan on 2018/9/17.
  */
 public class MemberListActivity extends BaseActivity {
-    @BindView(R.id.member_group_list_view)
-    LinearLayout mGroupListView;
+    @BindView(R.id.member_list_tab_layout)
+    TabLayout mMemberTabLayout;
+    @BindView(R.id.member_list_vp)
+    ViewPager mMemberViewPager;
+    private MemberListTabLayoutAdapter memberListTabLayoutAdapter;
 
     @Override
     protected void initPresenter() {
@@ -31,26 +34,10 @@ public class MemberListActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        for(int i=0;i<3;i++){
-            View view=LayoutInflater.from(this).inflate(R.layout.member_group_list_item, mGroupListView, false);
-            LinearLayout list_item_view= (LinearLayout) view.findViewById(R.id.member_group_list_item_view);
-            for(int j=0;j<6;j++){
-                View itemView=LayoutInflater.from(this).inflate(R.layout.member_group_value_item, list_item_view, false);
-                if(j==0){
-                    itemView.setPadding(0,0,0,15);
-                }else if(j==5){
-                    itemView.setPadding(0,15,0,5);
-                }else{
-                    itemView.setPadding(0,0,0,0);
-                }
-
-
-                list_item_view.addView(itemView);
-
-
-            }
-            mGroupListView.addView(view);
-        }
+        memberListTabLayoutAdapter = new MemberListTabLayoutAdapter(getSupportFragmentManager());
+        memberListTabLayoutAdapter.setTitle(getResources().getStringArray(R.array.member_tab_title));
+        mMemberViewPager.setAdapter(memberListTabLayoutAdapter);
+        mMemberTabLayout.setupWithViewPager(mMemberViewPager);
     }
 
     @Override

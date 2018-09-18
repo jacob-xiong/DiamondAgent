@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -23,7 +24,7 @@ import diamond.agent.utils.ToastUtils;
 /**
  * @author by xiongyan on 2018/9/12.
  */
-public abstract class BaseActivity<T extends BasePresenter> extends FragmentActivity implements View.OnClickListener, Handler.Callback {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements View.OnClickListener, Handler.Callback {
     protected LayoutInflater mInflater;
     protected Context mContext;
     private View mActionView;
