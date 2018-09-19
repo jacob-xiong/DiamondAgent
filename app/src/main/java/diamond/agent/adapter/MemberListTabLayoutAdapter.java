@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import diamond.agent.activity.MemberListFragment;
+import diamond.agent.fragment.MemberListFragment;
 
 /**
  * Created by Jacob on 2018-9-18.

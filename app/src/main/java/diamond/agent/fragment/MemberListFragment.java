@@ -1,26 +1,28 @@
-package diamond.agent.activity;
+package diamond.agent.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import diamond.agent.R;
 
 /**
  * Created by Jacob on 2018-9-18.
  */
 
-public class MemberListFragment extends Fragment {
+public class MemberListFragment extends BaseFragment {
     private static final String PAGE_INDEX = "page_index";
     private int mPageIndex;
     @BindView(R.id.member_group_list_view)
     LinearLayout mGroupListView;
+    @BindView(R.id.member_list_vertical_line)
+    LinearLayout mMemberListVerticalLine;
 
     public static Fragment newInstance(int pageIndex) {
         MemberListFragment fragment = new MemberListFragment();
@@ -32,18 +34,32 @@ public class MemberListFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.member_list_fragment, container, false);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mPageIndex = getArguments().getInt(PAGE_INDEX);
-        ButterKnife.bind(this,view);
-        return view;
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        initView();
+    protected int getLayoutId() {
+        return R.layout.member_list_fragment;
     }
+
+    @Override
+    protected void initPresenter() {
+
+    }
+
+    @Override
+    protected void loadData() {
+
+    }
+
+    @Override
+    protected void initView(View view) {
+        initView();
+        prepareMemberListVerticalLine();
+    }
+
 
     private void initView() {
         for (int i = 0; i < 3; i++) {
@@ -67,5 +83,20 @@ public class MemberListFragment extends Fragment {
             mGroupListView.addView(view);
         }
 
+    }
+
+    private void prepareMemberListVerticalLine() {
+        mGroupListView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                mGroupListView.getViewTreeObserver().removeOnPreDrawListener(this);
+                FrameLayout.LayoutParams imageParams = (FrameLayout.LayoutParams) mMemberListVerticalLine.getLayoutParams();
+                if (mGroupListView.getHeight() > 0) {
+                    imageParams.height = mGroupListView.getHeight();
+                    mMemberListVerticalLine.setLayoutParams(imageParams);
+                }
+                return false;
+            }
+        });
     }
 }

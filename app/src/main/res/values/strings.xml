@@ -31,6 +31,11 @@
     <string name="diamond_agent_consumer_extract">提成</string>
     <string name="diamond_agent_consumer_in_total">总共</string>
     <string name="diamond_agent_consumer_title">代理商分销</string>
+    <string name="diamond_agent_consumer_statistics">统计</string>
+    <string name="diamond_agent_consumer_first_consumer">一级消费者：%1$s人</string>
+    <string name="diamond_agent_consumer_second_consumer">二级消费者：%1$s人</string>
+    <string name="diamond_agent_consumer_three_consumer">三级消费者：%1$s人</string>
+    <string name="diamond_agent_consumer_all_member">全部成员：%1$s人</string>
 
 
     <array name="member_tab_title">
