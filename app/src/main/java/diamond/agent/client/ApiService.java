@@ -3,6 +3,8 @@ package diamond.agent.client;
 import diamond.agent.mvp.data.AgentCenterData;
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.InvitationCodeResultData;
+import diamond.agent.mvp.data.MemberListData;
+import retrofit2.http.Field;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -32,6 +34,11 @@ public interface ApiService {
      * @param id
      * @return
      */
-    @POST()
+    @POST("XXX/XXX")
     Observable<BaseResultData> startWithDraw(@Query("id") String id);
+
+    /**
+     * 成员列表页面
+     */
+    Observable<BaseResultData<MemberListData>> getMemberListData(@Field("id")String id);
 }

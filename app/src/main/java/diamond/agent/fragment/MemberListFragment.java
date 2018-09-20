@@ -12,12 +12,16 @@ import android.widget.LinearLayout;
 
 import butterknife.BindView;
 import diamond.agent.R;
+import diamond.agent.mvp.data.BaseResultData;
+import diamond.agent.mvp.data.MemberListData;
+import diamond.agent.mvp.presenter.MemberListPresenter;
+import diamond.agent.mvp.view.MemberListView;
 
 /**
  * Created by Jacob on 2018-9-18.
  */
 
-public class MemberListFragment extends BaseFragment {
+public class MemberListFragment extends BaseFragment<MemberListPresenter> implements MemberListView {
     private static final String PAGE_INDEX = "page_index";
     private int mPageIndex;
     @BindView(R.id.member_group_list_view)
@@ -49,7 +53,7 @@ public class MemberListFragment extends BaseFragment {
 
     @Override
     protected void initPresenter() {
-
+        presenter = new MemberListPresenter(this, getContext());
     }
 
     @Override
@@ -71,7 +75,7 @@ public class MemberListFragment extends BaseFragment {
         if (mGroupListView.getChildCount() == 3) {
             return;
         }
-        System.out.println("=============1==========="+System.currentTimeMillis());
+        System.out.println("=============1===========" + System.currentTimeMillis());
         for (int i = 0; i < 3; i++) {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.member_group_list_item, mGroupListView, false);
             LinearLayout list_item_view = (LinearLayout) view.findViewById(R.id.member_group_list_item_view);
@@ -92,7 +96,7 @@ public class MemberListFragment extends BaseFragment {
             }
             mGroupListView.addView(view);
         }
-        System.out.println("==============2=========="+System.currentTimeMillis());
+        System.out.println("==============2==========" + System.currentTimeMillis());
 
     }
 
@@ -126,5 +130,25 @@ public class MemberListFragment extends BaseFragment {
             initView();
             prepareMemberListVerticalLine();
         }
+    }
+
+    @Override
+    public void getMemberListSuccess(MemberListData resultData) {
+
+    }
+
+    @Override
+    public void getMemberListFail(String msg) {
+
+    }
+
+    @Override
+    public void loadFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onException(BaseResultData result) {
+
     }
 }

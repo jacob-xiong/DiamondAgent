@@ -4,7 +4,6 @@ import diamond.agent.client.ApiHost;
 import diamond.agent.client.NetWorkClient;
 import diamond.agent.mvp.data.AgentCenterData;
 import diamond.agent.mvp.data.BaseResultData;
-import rx.Scheduler;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -23,7 +22,7 @@ public class AgentCenterModel extends BaseModel<BaseDataBridge.AgentCenterDataBr
         return NetWorkClient.getApiService().getUserInfo(id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData<AgentCenterData>>() {
             @Override
             public void call(BaseResultData<AgentCenterData> resultData) {
-                if (ApiHost.CLIENT_SUCESS_CODE.equals(resultData.getStatusCode())) {
+                if (ApiHost.CLIENT_SUCCESS_CODE.equals(resultData.getStatusCode())) {
                     dataBridge.getUserInfoSuccess(resultData);
                 } else {
                     dataBridge.getUserInfoFail(resultData.getMessage());
@@ -41,7 +40,7 @@ public class AgentCenterModel extends BaseModel<BaseDataBridge.AgentCenterDataBr
         return NetWorkClient.getApiService().startWithDraw(id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData>() {
             @Override
             public void call(BaseResultData baseResultData) {
-                if (ApiHost.CLIENT_SUCESS_CODE.equals(baseResultData.getStatusCode())) {
+                if (ApiHost.CLIENT_SUCCESS_CODE.equals(baseResultData.getStatusCode())) {
                     dataBridge.startWithDrawSuccess(baseResultData);
                 } else {
                     dataBridge.startWithDrawFail(baseResultData.getMessage());

@@ -5,7 +5,7 @@ package diamond.agent.client;
  */
 public class ApiHost {
     private static String URL_TEST = "http://www.baidu.com/";
-    public static final String  CLIENT_SUCESS_CODE="0";
+    public static final String CLIENT_SUCCESS_CODE ="1";
 
     public static String getUrlTest() {
         return URL_TEST;

@@ -21,7 +21,7 @@ public class InvitationCodeModel extends  BaseModel<BaseDataBridge.InvitationCod
         return NetWorkClient.getApiService().getInvitationCode(id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData<InvitationCodeResultData>>() {
             @Override
             public void call(BaseResultData<InvitationCodeResultData> resultData) {
-                if(ApiHost.CLIENT_SUCESS_CODE.equals(resultData.getStatusCode())){
+                if(ApiHost.CLIENT_SUCCESS_CODE.equals(resultData.getStatusCode())){
                     dataBridge.getInvitationCodeSuccess(resultData);
                 }else{
                     dataBridge.getInvitationCodeFail(resultData.getMessage());
