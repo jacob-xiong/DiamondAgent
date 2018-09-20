@@ -1,145 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp12"
-        android:background="@color/selected_list_divider" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/dp12"
-        android:paddingLeft="@dimen/dp15">
+        android:layout_height="match_parent"
+        android:background="@color/main_bg"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/diamond_agent_consumer_statistics"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp16" />
-
-        <TextView
-            android:id="@+id/first_consumer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp5"
-            android:text="fdafda"
-            android:textColor="@color/member_list_text_color"
-            android:textSize="@dimen/sp14" />
-
-        <TextView
-            android:id="@+id/second_consumer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp5"
-            android:text="fdafda"
-            android:textColor="@color/member_list_text_color"
-            android:textSize="@dimen/sp14" />
-
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dp5"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/three_consumer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="fdafdafda"
-                android:textColor="@color/member_list_text_color"
-                android:textSize="@dimen/sp14" />
-
-            <TextView
-                android:id="@+id/all_member"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="fdafdafda"
-                android:textColor="@color/member_list_text_color"
-                android:textSize="@dimen/sp14" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp5"
-        android:background="@color/selected_list_divider" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp40"
-        android:paddingLeft="@dimen/dp15"
-        android:text="@string/diamond_agent_center_member_list_title"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp16"
-        android:gravity="center_vertical"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="@color/selected_list_divider" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_height="@dimen/dp12"
+            android:background="@color/selected_list_divider" />
 
         <LinearLayout
-            android:id="@+id/member_group_list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/dp15" />
+            android:paddingBottom="@dimen/dp12"
+            android:paddingLeft="@dimen/dp15">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/diamond_agent_consumer_statistics"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:id="@+id/first_consumer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="fdafda"
+                android:textColor="@color/member_list_text_color"
+                android:textSize="@dimen/sp14" />
+
+            <TextView
+                android:id="@+id/second_consumer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="fdafda"
+                android:textColor="@color/member_list_text_color"
+                android:textSize="@dimen/sp14" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/three_consumer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="fdafdafda"
+                    android:textColor="@color/member_list_text_color"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:id="@+id/all_member"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="fdafdafda"
+                    android:textColor="@color/member_list_text_color"
+                    android:textSize="@dimen/sp14" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp5"
+            android:background="@color/selected_list_divider" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp15"
+            android:text="@string/diamond_agent_center_member_list_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:background="@color/selected_list_divider" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/member_group_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/member_list_vertical_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp15"
+                android:weightSum="9.5">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7.5" />
+
+                    <View
+                        android:layout_width="@dimen/dp1"
+                        android:layout_height="match_parent"
+                        android:background="@color/selected_list_divider" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3" />
+
+                    <View
+                        android:layout_width="@dimen/dp1"
+                        android:layout_height="match_parent"
+                        android:background="@color/selected_list_divider" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3" />
+
+                    <View
+                        android:layout_width="@dimen/dp1"
+                        android:layout_height="match_parent"
+                        android:background="@color/selected_list_divider" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
 
         <LinearLayout
-            android:id="@+id/member_list_vertical_line"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp15"
             android:weightSum="9.5">
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8">
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:orientation="horizontal">
 
-                <View
+                <TextView
+                    android:id="@+id/consumer_in_total"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical|left"
+                    android:maxLines="1"
+                    android:text="@string/diamond_agent_consumer_total"
+                    android:textColor="@color/center_surplus_days"
+                    android:textSize="@dimen/sp14" />
+
+                <TextView
+                    android:id="@+id/member_num_total"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="1000人"
+                    android:textColor="@color/center_surplus_days"
+                    android:textSize="@dimen/sp14" />
 
                 <View
                     android:layout_width="@dimen/dp1"
-                    android:layout_height="match_parent"
-                    android:background="@color/selected_list_divider" />
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible" />
 
-                <View
+                <TextView
+                    android:id="@+id/member_consumption_total"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2.5" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="1000元"
+                    android:textColor="@color/center_surplus_days"
+                    android:textSize="@dimen/sp14" />
+
 
                 <View
                     android:layout_width="@dimen/dp1"
-                    android:layout_height="match_parent"
-                    android:background="@color/selected_list_divider" />
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible" />
 
-                <View
+                <TextView
+                    android:id="@+id/member_extract_total"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2.5" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="10000元"
+                    android:textColor="@color/center_surplus_days"
+                    android:textSize="@dimen/sp14" />
 
-                <View
-                    android:layout_width="@dimen/dp1"
-                    android:layout_height="match_parent"
-                    android:background="@color/selected_list_divider" />
             </LinearLayout>
-
         </LinearLayout>
-    </FrameLayout>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

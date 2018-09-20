@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -23,6 +24,8 @@ public class MemberListFragment extends BaseFragment {
     LinearLayout mGroupListView;
     @BindView(R.id.member_list_vertical_line)
     LinearLayout mMemberListVerticalLine;
+    private boolean isVisibleToUser = false;
+    private boolean isCreateView = false;
 
     public static Fragment newInstance(int pageIndex) {
         MemberListFragment fragment = new MemberListFragment();
@@ -56,12 +59,18 @@ public class MemberListFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        initView();
-        prepareMemberListVerticalLine();
+        if (isVisibleToUser) {
+            initView();
+            prepareMemberListVerticalLine();
+        }
+
     }
 
 
     private void initView() {
+        if (mGroupListView.getChildCount() == 3) {
+            return;
+        }
         for (int i = 0; i < 3; i++) {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.member_group_list_item, mGroupListView, false);
             LinearLayout list_item_view = (LinearLayout) view.findViewById(R.id.member_group_list_item_view);
@@ -98,5 +107,22 @@ public class MemberListFragment extends BaseFragment {
                 return false;
             }
         });
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        isCreateView = true;
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+        if (isVisibleToUser && isCreateView) {
+            initView();
+            prepareMemberListVerticalLine();
+        }
     }
 }

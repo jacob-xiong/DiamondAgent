@@ -7,6 +7,7 @@
     <string name="diamond_agent_center_superior_null">无</string>
     <string name="diamond_agent_center_zero">0</string>
     <string name="diamond_agent_center_amount">%1$s 元</string>
+    <string name="diamond_agent_center_person">%1$s 人</string>
     <string name="diamond_agent_center_today_title">今日返利</string>
     <string name="diamond_agent_center_this_month_title">本月返利</string>
     <string name="diamond_agent_center_all_title">全部返利</string>
@@ -36,6 +37,7 @@
     <string name="diamond_agent_consumer_second_consumer">二级消费者：%1$s人</string>
     <string name="diamond_agent_consumer_three_consumer">三级消费者：%1$s人</string>
     <string name="diamond_agent_consumer_all_member">全部成员：%1$s人</string>
+    <string name="diamond_agent_consumer_total">总计</string>
 
 
     <array name="member_tab_title">
