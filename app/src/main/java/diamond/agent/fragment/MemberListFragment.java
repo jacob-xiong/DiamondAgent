@@ -71,6 +71,7 @@ public class MemberListFragment extends BaseFragment {
         if (mGroupListView.getChildCount() == 3) {
             return;
         }
+        System.out.println("=============1==========="+System.currentTimeMillis());
         for (int i = 0; i < 3; i++) {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.member_group_list_item, mGroupListView, false);
             LinearLayout list_item_view = (LinearLayout) view.findViewById(R.id.member_group_list_item_view);
@@ -91,6 +92,7 @@ public class MemberListFragment extends BaseFragment {
             }
             mGroupListView.addView(view);
         }
+        System.out.println("==============2=========="+System.currentTimeMillis());
 
     }
 
