@@ -18,7 +18,8 @@
             android:ellipsize="end"
             android:gravity="center_vertical|left"
             android:maxLines="1"
-            android:text="@string/diamond_agent_consumer_in_total" />
+            android:text="@string/diamond_agent_consumer_in_total"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/consumer_title"
@@ -31,6 +32,7 @@
             android:text="@string/diamond_agent_consumer_title_one" />
 
         <TextView
+            android:id="@+id/consumer_already_use"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -40,6 +42,7 @@
             android:text="@string/diamond_agent_consumer_already_use" />
 
         <TextView
+            android:id="@+id/consumer_item_extract"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
