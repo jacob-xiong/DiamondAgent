@@ -1,5 +1,6 @@
 package diamond.agent.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,12 +21,14 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import diamond.agent.R;
+import diamond.agent.activity.MemberDetailActivity;
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.MemberGroupData;
 import diamond.agent.mvp.data.MemberItemData;
 import diamond.agent.mvp.data.MemberListData;
 import diamond.agent.mvp.presenter.MemberListPresenter;
 import diamond.agent.mvp.view.MemberListView;
+import diamond.agent.utils.FastClickUtils;
 import diamond.agent.utils.ScreenUtils;
 
 /**
@@ -160,6 +163,16 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
                 return;
             }
             View groupView = LayoutInflater.from(getContext()).inflate(R.layout.member_group_list_item, mGroupListView, false);
+            final View queryLevel = groupView.findViewById(R.id.query_detail);
+            queryLevel.setTag(i);
+            queryLevel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (FastClickUtils.isNormalClick()) {
+                        startDetailActivity(queryLevel.getTag());
+                    }
+                }
+            });
             LinearLayout itemLinearLayout = (LinearLayout) groupView.findViewById(R.id.member_group_list_item_view);
             for (int j = 0; j < groupData.getMemberLevelItemList().size() + 2; j++) {
 
@@ -169,7 +182,7 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
                 TextView consumerAlreadyUse = (TextView) itemView.findViewById(R.id.consumer_already_use);
                 TextView consumerExtract = (TextView) itemView.findViewById(R.id.consumer_item_extract);
                 if (j == 0) {
-                    itemView.setPadding(0, 0, 0, ScreenUtils.dip2px(getContext(), 10));
+                    itemView.setPadding(0, ScreenUtils.dip2px(getContext(), 5), 0, ScreenUtils.dip2px(getContext(), 8));
                     consumerTitle.setText(getItemTitle(i));
                 } else if (0 < j && j < groupData.getMemberLevelItemList().size() + 1) {
                     MemberItemData itemData = groupData.getMemberLevelItemList().get(j - 1);
@@ -190,7 +203,7 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
                     consumerTitle.setText(getResources().getString(R.string.diamond_agent_center_person, getDefaultZero(groupData.getMemberLevelAllNum())));
                     consumerAlreadyUse.setText(getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(groupData.getMemberLevelAllConsumed())));
                     consumerExtract.setText(getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(groupData.getGetMemberLevelAllNumCommission())));
-                    itemView.setPadding(0, ScreenUtils.dip2px(getContext(), 10), 0, ScreenUtils.dip2px(getContext(), 5));
+                    itemView.setPadding(0, ScreenUtils.dip2px(getContext(), 8), 0, ScreenUtils.dip2px(getContext(), 5));
                 }
 
                 itemLinearLayout.addView(itemView);
@@ -199,6 +212,16 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
             }
             mGroupListView.addView(groupView);
         }
+    }
+
+    private void startDetailActivity(Object tag) {
+        if (tag == null) {
+            return;
+        }
+        String levelKey = String.valueOf(tag);
+        Intent intent = new Intent(context, MemberDetailActivity.class);
+        intent.putExtra(MemberDetailActivity.QUERY_LEVEL, levelKey);
+        startActivity(intent);
     }
 
     private String getItemTitle(int i) {
@@ -266,6 +289,16 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
 
     @Override
     public void getMemberListFail(String msg) {
+
+    }
+
+    @Override
+    public void getMemberDetailListSuccess(MemberGroupData resultData) {
+
+    }
+
+    @Override
+    public void getMemberDetailListFail(String msg) {
 
     }
 

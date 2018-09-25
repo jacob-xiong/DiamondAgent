@@ -25,6 +25,16 @@ public class MemberGroupData implements Serializable {
      */
     private String getMemberLevelAllNumCommission;
 
+    private int totalPages;
+
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
+    }
+
     public List<MemberItemData> getMemberLevelItemList() {
         return memberLevelItemList;
     }

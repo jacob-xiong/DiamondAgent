@@ -1,9 +1,9 @@
 package diamond.agent.mvp.model;
 
-import diamond.agent.activity.BaseActivity;
 import diamond.agent.mvp.data.AgentCenterData;
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.InvitationCodeResultData;
+import diamond.agent.mvp.data.MemberGroupData;
 import diamond.agent.mvp.data.MemberListData;
 
 /**
@@ -55,6 +55,11 @@ public interface BaseDataBridge<T extends BaseResultData> {
         void getMemberListSuccess(BaseResultData<MemberListData> resultData);
 
         void getMemberListFail(String msg);
+
+
+        void getMemberDetailListSuccess(BaseResultData<MemberGroupData> resultData);
+
+        void getMemberDetailListFail(String msg);
 
     }
 

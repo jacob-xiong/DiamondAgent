@@ -1,5 +1,6 @@
 package diamond.agent.mvp.view;
 
+import diamond.agent.mvp.data.MemberGroupData;
 import diamond.agent.mvp.data.MemberListData;
 
 /**
@@ -10,4 +11,8 @@ public interface MemberListView extends BaseView {
     void getMemberListSuccess(MemberListData resultData);
 
     void getMemberListFail(String msg);
+
+    void getMemberDetailListSuccess(MemberGroupData resultData);
+
+    void getMemberDetailListFail(String msg);
 }

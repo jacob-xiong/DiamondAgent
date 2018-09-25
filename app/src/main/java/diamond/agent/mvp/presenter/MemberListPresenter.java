@@ -3,6 +3,7 @@ package diamond.agent.mvp.presenter;
 import android.content.Context;
 
 import diamond.agent.mvp.data.BaseResultData;
+import diamond.agent.mvp.data.MemberGroupData;
 import diamond.agent.mvp.data.MemberListData;
 import diamond.agent.mvp.model.BaseDataBridge;
 import diamond.agent.mvp.model.MemberListModel;
@@ -44,8 +45,23 @@ public class MemberListPresenter extends BasePresenter<MemberListView, MemberLis
         view.getMemberListFail(msg);
     }
 
+    @Override
+    public void getMemberDetailListSuccess(BaseResultData<MemberGroupData> resultData) {
+        view.getMemberDetailListSuccess(resultData.getData());
+    }
+
+    @Override
+    public void getMemberDetailListFail(String msg) {
+        view.getMemberDetailListFail(msg);
+    }
+
+
     public void getMemberListData(String id) {
         addSubscription(model.getMemberListData(id));
+    }
+
+    public void getMemberDetailListData(String id, String level,int pageNo) {
+        addSubscription(model.getMemberDetailListData(id, level,pageNo));
     }
 
 }

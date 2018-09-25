@@ -4,7 +4,7 @@ package diamond.agent.client;
  * @author by xiongyan on 2018/9/12.
  */
 public class ApiHost {
-    private static String URL_TEST = "http://www.baidu.com/";
+    private static String URL_TEST = "http://mobie.bee.frp.lu8.win/bee/a/api/bee/";
     public static final String CLIENT_SUCCESS_CODE ="1";
 
     public static String getUrlTest() {
