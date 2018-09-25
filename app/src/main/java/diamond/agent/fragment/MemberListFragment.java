@@ -16,6 +16,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import diamond.agent.R;
 import diamond.agent.mvp.data.BaseResultData;
@@ -109,7 +111,7 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
 
     @Override
     protected void initPresenter() {
-        presenter = new MemberListPresenter(this, getContext());
+        presenter = new MemberListPresenter(this, getActivity());
     }
 
     @Override
@@ -160,10 +162,7 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
             View groupView = LayoutInflater.from(getContext()).inflate(R.layout.member_group_list_item, mGroupListView, false);
             LinearLayout itemLinearLayout = (LinearLayout) groupView.findViewById(R.id.member_group_list_item_view);
             for (int j = 0; j < groupData.getMemberLevelItemList().size() + 2; j++) {
-                MemberItemData itemData = groupData.getMemberLevelItemList().get(j - 1);
-                if (itemData == null) {
-                    return;
-                }
+
                 View itemView = LayoutInflater.from(getContext()).inflate(R.layout.member_group_value_item, itemLinearLayout, false);
                 TextView consumerInTotal = (TextView) itemView.findViewById(R.id.consumer_in_total);
                 TextView consumerTitle = (TextView) itemView.findViewById(R.id.consumer_title);
@@ -173,6 +172,10 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
                     itemView.setPadding(0, 0, 0, ScreenUtils.dip2px(getContext(), 10));
                     consumerTitle.setText(getItemTitle(i));
                 } else if (0 < j && j < groupData.getMemberLevelItemList().size() + 1) {
+                    MemberItemData itemData = groupData.getMemberLevelItemList().get(j - 1);
+                    if (itemData == null) {
+                        return;
+                    }
                     itemView.setPadding(0, 0, 0, 0);
                     consumerTitle.setText(itemData.getMemberId());
                     consumerAlreadyUse.setText(getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(itemData.getMemberConsumed())));
@@ -242,7 +245,10 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         this.isVisibleToUser = isVisibleToUser;
-        if (isVisibleToUser && isCreateView && presenter != null) {
+        if (isVisibleToUser && isCreateView) {
+            if (presenter == null) {
+                presenter = new MemberListPresenter(this, getActivity());
+            }
             presenter.getMemberListData("id");
 
         }
@@ -265,7 +271,36 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
 
     @Override
     public void loadFailure(Throwable throwable) {
-
+        MemberListData resultData = new MemberListData();
+        resultData.setFirstMemberNum("100");
+        resultData.setSecondMemberNum("1200");
+        resultData.setThreeMemberNum("1500");
+        resultData.setTotalNum("2000");
+        resultData.setTotalConsumed("5000");
+        resultData.setTotalCommission("3000");
+        ArrayList<MemberGroupData> list = new ArrayList<>();
+        for (int j = 0; j < 3; j++) {
+            MemberGroupData groupData = new MemberGroupData();
+            groupData.setGetMemberLevelAllNumCommission("300");
+            groupData.setMemberLevelAllConsumed("500");
+            groupData.setMemberLevelAllNum("100");
+            ArrayList<MemberItemData> itemDataList = new ArrayList<>();
+            for (int i = 0; i < 4; i++) {
+                MemberItemData itemData = new MemberItemData();
+                itemData.setMemberId("WH" + "00" + i);
+                itemData.setMemberCommission(i * 200 + "");
+                itemData.setMemberConsumed(i * 100 + "");
+                itemDataList.add(itemData);
+            }
+            groupData.setMemberLevelItemList(itemDataList);
+            list.add(groupData);
+        }
+        resultData.setMemberLevelDataList(list);
+        isGetDataSuccess = true;
+        if (resultData != null) {
+            mMemberListData = resultData;
+            initView();
+        }
     }
 
     @Override

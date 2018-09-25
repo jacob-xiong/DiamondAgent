@@ -23,6 +23,17 @@ public class MemberListActivity extends BaseActivity {
     ViewPager mMemberViewPager;
     private MemberListTabLayoutAdapter memberListTabLayoutAdapter;
 
+
+    @Override
+    protected boolean isShowActionBarTitle() {
+        return true;
+    }
+
+    @Override
+    protected int getActionTitle() {
+        return R.string.diamond_agent_center_member_list_title;
+    }
+
     @Override
     protected void initPresenter() {
 

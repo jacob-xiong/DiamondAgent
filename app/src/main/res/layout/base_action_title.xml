@@ -18,8 +18,9 @@
         style="@style/action_bar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dp5"
+        android:layout_toRightOf="@+id/action_back" />
 
     <ImageView
         android:id="@+id/action_right_img"

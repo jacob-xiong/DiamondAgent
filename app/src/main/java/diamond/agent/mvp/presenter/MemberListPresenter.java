@@ -31,7 +31,7 @@ public class MemberListPresenter extends BasePresenter<MemberListView, MemberLis
 
     @Override
     public void onFailure(Throwable throwable) {
-
+        view.loadFailure(throwable);
     }
 
     @Override

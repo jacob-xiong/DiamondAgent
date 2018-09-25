@@ -5,6 +5,7 @@ import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.InvitationCodeResultData;
 import diamond.agent.mvp.data.MemberListData;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -18,7 +19,7 @@ public interface ApiService {
      * @param id
      * @return
      */
-    @POST()
+    @POST("XXX/XXX")
     Observable<BaseResultData<InvitationCodeResultData>> getInvitationCode(@Query("id") String id);
 
     /**
@@ -40,5 +41,7 @@ public interface ApiService {
     /**
      * 成员列表页面
      */
+    @FormUrlEncoded
+    @POST("XXX/XXX")
     Observable<BaseResultData<MemberListData>> getMemberListData(@Field("id")String id);
 }
