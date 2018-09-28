@@ -19,6 +19,7 @@
             android:gravity="center_vertical|left"
             android:maxLines="1"
             android:text="@string/diamond_agent_consumer_in_total"
+            android:textColor="@color/member_list_text_color"
             android:visibility="invisible" />
 
         <TextView
@@ -29,7 +30,8 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="@string/diamond_agent_consumer_title_one" />
+            android:text="@string/diamond_agent_consumer_title_one"
+            android:textColor="@color/member_list_text_color" />
 
         <TextView
             android:id="@+id/consumer_already_use"
@@ -39,7 +41,8 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="@string/diamond_agent_consumer_already_use" />
+            android:text="@string/diamond_agent_consumer_already_use"
+            android:textColor="@color/member_list_text_color" />
 
         <TextView
             android:id="@+id/consumer_item_extract"
@@ -49,7 +52,8 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:text="@string/diamond_agent_consumer_extract" />
+            android:text="@string/diamond_agent_consumer_extract"
+            android:textColor="@color/member_list_text_color" />
 
     </LinearLayout>
 </LinearLayout>

@@ -56,9 +56,11 @@ public class MemberDetailAdapter extends RecyclerView.Adapter {
         MemberDetailItemViewHolder itemViewHolder = (MemberDetailItemViewHolder) holder;
         View itemView = itemViewHolder.itemView;
         if (position == 0) {
+            setTitleIsShow(itemViewHolder, false);
             itemView.setPadding(0, ScreenUtils.dip2px(mContext, 5), 0, ScreenUtils.dip2px(mContext, 8));
             itemViewHolder.consumerTitle.setText(getItemTitle(queryLevel));
         } else if (0 < position && position < itemList.size() + 1) {
+            setTitleIsShow(itemViewHolder, false);
             MemberItemData itemData = itemList.get(position - 1);
             if (itemData == null) {
                 return;
@@ -69,11 +71,7 @@ public class MemberDetailAdapter extends RecyclerView.Adapter {
             itemViewHolder.consumerExtract.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(itemData.getMemberCommission())));
 
         } else if (position == itemList.size() + 1) {
-            itemViewHolder.consumerInTotal.setVisibility(View.VISIBLE);
-            itemViewHolder.consumerInTotal.setTextColor(Color.parseColor("#FF8C00"));
-            itemViewHolder.consumerTitle.setTextColor(Color.parseColor("#FF8C00"));
-            itemViewHolder.consumerAlreadyUse.setTextColor(Color.parseColor("#FF8C00"));
-            itemViewHolder.consumerExtract.setTextColor(Color.parseColor("#FF8C00"));
+            setTitleIsShow(itemViewHolder, true);
             itemViewHolder.consumerTitle.setText(mContext.getResources().getString(R.string.diamond_agent_center_person, getDefaultZero(resultData.getMemberLevelAllNum())));
             itemViewHolder.consumerAlreadyUse.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(resultData.getMemberLevelAllConsumed())));
             itemViewHolder.consumerExtract.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(resultData.getGetMemberLevelAllNumCommission())));
@@ -82,8 +80,19 @@ public class MemberDetailAdapter extends RecyclerView.Adapter {
 
     }
 
+    private void setTitleIsShow(MemberDetailItemViewHolder itemViewHolder, boolean isShowTitle) {
+        itemViewHolder.consumerInTotal.setVisibility(isShowTitle ? View.VISIBLE : View.INVISIBLE);
+        itemViewHolder.consumerInTotal.setTextColor(Color.parseColor(isShowTitle ? "#FF8C00" : "#808080"));
+        itemViewHolder.consumerTitle.setTextColor(Color.parseColor(isShowTitle ? "#FF8C00" : "#808080"));
+        itemViewHolder.consumerAlreadyUse.setTextColor(Color.parseColor(isShowTitle ? "#FF8C00" : "#808080"));
+        itemViewHolder.consumerExtract.setTextColor(Color.parseColor(isShowTitle ? "#FF8C00" : "#808080"));
+    }
+
     @Override
     public int getItemCount() {
+        if (itemList.size() == 0) {
+            return 0;
+        }
         return itemList.size() + 2;
     }
 

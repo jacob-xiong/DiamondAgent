@@ -105,6 +105,20 @@ public class MemberDetailActivity extends BaseActivity<MemberListPresenter> impl
 
     @Override
     public void loadFailure(Throwable throwable) {
+        mMemberGroupData = new MemberGroupData();
+        mMemberGroupData.setGetMemberLevelAllNumCommission("300");
+        mMemberGroupData.setMemberLevelAllConsumed("500");
+        mMemberGroupData.setMemberLevelAllNum("100");
+        ArrayList<MemberItemData> itemDataList = new ArrayList<>();
+        for (int i = 0; i < 40; i++) {
+            MemberItemData itemData = new MemberItemData();
+            itemData.setMemberId("WH" + "00" + i);
+            itemData.setMemberCommission(i * 200 + "");
+            itemData.setMemberConsumed(i * 100 + "");
+            itemDataList.add(itemData);
+        }
+        mMemberGroupData.setMemberLevelItemList(itemDataList);
+        mMemberDetailAdapter.setGroupData(mMemberGroupData);
 
     }
 
