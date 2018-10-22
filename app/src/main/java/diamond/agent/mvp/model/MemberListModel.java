@@ -25,7 +25,7 @@ public class MemberListModel extends BaseModel<BaseDataBridge.MemberDataListBrid
         return NetWorkClient.getApiService().getMemberListData(id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData<MemberListData>>() {
             @Override
             public void call(BaseResultData<MemberListData> resultData) {
-                if (ApiHost.CLIENT_SUCCESS_CODE.equals(resultData.getStatusCode())) {
+                if (ApiHost.CLIENT_SUCCESS_CODE.equals(resultData.getStatus())) {
                     dataBridge.getMemberListSuccess(resultData);
                 } else {
                     dataBridge.getMemberListFail(resultData.getMessage());
@@ -44,7 +44,7 @@ public class MemberListModel extends BaseModel<BaseDataBridge.MemberDataListBrid
         return NetWorkClient.getApiService().getMemberDetailListData(id, level, pageNo).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData<MemberGroupData>>() {
             @Override
             public void call(BaseResultData<MemberGroupData> resultData) {
-                if (ApiHost.CLIENT_SUCCESS_CODE.equals(resultData.getStatusCode())) {
+                if (ApiHost.CLIENT_SUCCESS_CODE.equals(resultData.getStatus())) {
                     dataBridge.getMemberDetailListSuccess(resultData);
                 } else {
                     dataBridge.getMemberDetailListFail(resultData.getMessage());

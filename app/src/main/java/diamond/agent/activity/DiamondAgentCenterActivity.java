@@ -3,7 +3,6 @@ package diamond.agent.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -13,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -106,7 +107,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
 
     }
 
-    @OnClick({R.id.alipay_checkbox, R.id.center_buy_button, R.id.balance_take, R.id.action_right_tv, R.id.qr_code_view,R.id.member_list_view})
+    @OnClick({R.id.alipay_checkbox, R.id.center_buy_button, R.id.balance_take, R.id.action_right_tv, R.id.qr_code_view, R.id.member_list_view})
     void onViewClick(View view) {
         if (isGetDataSuccess) {
             switch (view.getId()) {
@@ -181,13 +182,14 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
     }
 
     private void setDataToView() {
-        mCenterNum.setText(getString(R.string.diamond_agent_center_num, getDefaultEmpty(mAgentCenterData.getUserNum())));
-        mCenterSuperior.setText(getString(R.string.diamond_agent_center_superior, getDefaultNull(mAgentCenterData.getUserSuperior())));
+        DecimalFormat df = new DecimalFormat("######0");
+        mCenterNum.setText(getString(R.string.diamond_agent_center_num, getDefaultEmpty(mAgentCenterData.getInfo().getUserId())));
+        mCenterSuperior.setText(getString(R.string.diamond_agent_center_superior, getDefaultNull(mAgentCenterData.getInfo().getLevel1Name())));
         mCenterTodayAmount.setText(getAmount(AMOUNT_DAY));
         mCenterMonthAmount.setText(getAmount(AMOUNT_MONTH));
         mCenterAllAmount.setText(getAmount(AMOUNT_ALL));
-        mCenterSurplusDays.setText(getString(R.string.diamond_agent_center_surplus_days_title, getDefaultZero(mAgentCenterData.getSurplusDays())));
-        mCenterBalanceTitle.setText(getBalanceTitle(getResources().getString(R.string.diamond_agent_center_balance_title, ("￥" + getDefaultZero(mAgentCenterData.getUserBalance())))));
+        mCenterSurplusDays.setText(getString(R.string.diamond_agent_center_surplus_days_title, (df.format(mAgentCenterData.getInfo().getValidDays()) + "")));
+        mCenterBalanceTitle.setText(getBalanceTitle(getResources().getString(R.string.diamond_agent_center_balance_title, ("￥" + getDefaultZero(mAgentCenterData.getInfo().getMoney())))));
         mCenterRenenTitle.setText(getRenenTitle(getResources().getString(R.string.diamond_agent_center_renew_logo_title, getDefaultZero(mAgentCenterData.getRenewPrice()))));
     }
 
@@ -210,20 +212,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
 
     @Override
     public void loadFailure(Throwable throwable) {
-        mAgentCenterData = new AgentCenterData();
-        mAgentCenterData.setAllAmount("100");
-        mAgentCenterData.setMonthAmount("50");
-        mAgentCenterData.setRenewPrice("200");
-        mAgentCenterData.setSurplusDays("700");
-        mAgentCenterData.setTodayAmount("10");
-        mAgentCenterData.setUserBalance("1000");
-        mAgentCenterData.setUserNum("9527");
-        mAgentCenterData.setUserSuperior("7592");
-        if (mAgentCenterData != null) {
-            isGetDataSuccess = true;
-            mCenterALiPayCheckBox.setEnabled(true);
-            setDataToView();
-        }
+
 
     }
 
@@ -254,13 +243,13 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
         String amount = "";
         switch (type) {
             case AMOUNT_DAY:
-                amount = mAgentCenterData.getTodayAmount();
+                amount = mAgentCenterData.getRebate().getDay();
                 break;
             case AMOUNT_MONTH:
-                amount = mAgentCenterData.getMonthAmount();
+                amount = mAgentCenterData.getRebate().getMonth();
                 break;
             case AMOUNT_ALL:
-                amount = mAgentCenterData.getAllAmount();
+                amount = mAgentCenterData.getRebate().getAll();
                 break;
             default:
                 break;
@@ -278,7 +267,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
         return style;
     }
 
-    private SpannableStringBuilder getBalanceTitle(String str){
+    private SpannableStringBuilder getBalanceTitle(String str) {
         SpannableStringBuilder style = new SpannableStringBuilder(str);
         style.setSpan((new ForegroundColorSpan(Color.parseColor("#999999"))), 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         style.setSpan((new ForegroundColorSpan(Color.parseColor("#BA55D3"))), 3, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

@@ -9,7 +9,7 @@ public class BaseResultData<T> implements Serializable {
     /**
      * 返回状态码
      */
-    private String statusCode;
+    private String status;
 
     /**
      * 返回的message信息
@@ -21,12 +21,12 @@ public class BaseResultData<T> implements Serializable {
      */
     T data;
 
-    public String getStatusCode() {
-        return statusCode;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getMessage() {

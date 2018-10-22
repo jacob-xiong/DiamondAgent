@@ -30,8 +30,9 @@ public interface ApiService {
      * @param id
      * @return
      */
-    @POST("/getMyInfo")
-    Observable<BaseResultData<AgentCenterData>> getUserInfo(@Query("id") String id);
+    @POST("/bee/a/api/bee/getMyInfo")
+    @FormUrlEncoded
+    Observable<BaseResultData<AgentCenterData>> getUserInfo(@Field("userId") String id);
 
     /**
      * 发起退款
