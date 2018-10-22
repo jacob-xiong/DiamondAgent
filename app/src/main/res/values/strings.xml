@@ -38,6 +38,9 @@
     <string name="diamond_agent_consumer_three_consumer">三级消费者：%1$s人</string>
     <string name="diamond_agent_consumer_all_member">全部成员：%1$s人</string>
     <string name="diamond_agent_consumer_total">总计</string>
+    <string name="diamond_agent_center_referee_title">推荐人</string>
+    <string name="diamond_agent_center_referee_submit_button">提交</string>
+    <string name="diamond_agent_center_referee_edit_hit">（请在此填写推荐人的邀请码）</string>
 
 
     <array name="member_tab_title">

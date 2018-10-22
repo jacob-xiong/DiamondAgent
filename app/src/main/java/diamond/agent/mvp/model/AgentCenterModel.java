@@ -54,4 +54,22 @@ public class AgentCenterModel extends BaseModel<BaseDataBridge.AgentCenterDataBr
         });
     }
 
+
+    public Subscription addLowerLevel(String userId,String code){
+        return NetWorkClient.getApiService().addLowerLevel(userId,code).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData>() {
+            @Override
+            public void call(BaseResultData baseResultData) {
+                if (ApiHost.CLIENT_SUCCESS_CODE.equals(baseResultData.getStatus())) {
+                    dataBridge.addLowerLevelSucess(baseResultData);
+                } else {
+                    dataBridge.addLowerLevelFail(baseResultData.getMessage());
+                }
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                dataBridge.onFailure(throwable);
+            }
+        });
+    }
 }

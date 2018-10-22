@@ -48,6 +48,8 @@ public interface BaseDataBridge<T extends BaseResultData> {
         void startWithDrawSuccess(BaseResultData baseResultData);
 
         void startWithDrawFail(String msg);
+        void addLowerLevelSucess(BaseResultData baseResultData);
+        void addLowerLevelFail(String msg);
 
     }
 

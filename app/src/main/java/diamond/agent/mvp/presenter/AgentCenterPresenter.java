@@ -55,11 +55,24 @@ public class AgentCenterPresenter extends BasePresenter<AgentCenterView, AgentCe
         view.startWithDrawFail(msg);
     }
 
+    @Override
+    public void addLowerLevelSucess(BaseResultData baseResultData) {
+        view.addLowerLevelSucess();
+    }
+
+    @Override
+    public void addLowerLevelFail(String msg) {
+        view.addLowerLevelFail(msg);
+    }
+
     public void getUserInfo(String id) {
         addSubscription(model.getUserInfo(id));
     }
 
     public void startWithDraw(String id) {
         addSubscription(model.startWithDraw(id));
+    }
+    public void addLowerLevel(String userId,String code){
+        addSubscription(model.addLowerLevel(userId,code));
     }
 }

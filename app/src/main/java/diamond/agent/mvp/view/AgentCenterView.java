@@ -14,4 +14,6 @@ public interface AgentCenterView extends BaseView{
     void startWithDrawSuccess();
 
     void startWithDrawFail(String msg);
+    void addLowerLevelSucess();
+    void addLowerLevelFail(String msg);
 }

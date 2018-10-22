@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,6 +66,10 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
     TextView mCenterBuyBt;
     private AgentCenterData mAgentCenterData;
     private boolean isGetDataSuccess = false;
+    @BindView(R.id.diamond_agent_center_referee_title_view)
+    View  mCenterRefereeTitleView;
+    @BindView(R.id.diamond_agent_center_referee_edit)
+    EditText mCenterRefereeEdit;
 
 
     @Override
@@ -107,7 +112,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
 
     }
 
-    @OnClick({R.id.alipay_checkbox, R.id.center_buy_button, R.id.balance_take, R.id.action_right_tv, R.id.qr_code_view, R.id.member_list_view})
+    @OnClick({R.id.alipay_checkbox, R.id.center_buy_button, R.id.balance_take, R.id.action_right_tv, R.id.qr_code_view, R.id.member_list_view,R.id.diamond_agent_center_referee_submit})
     void onViewClick(View view) {
         if (isGetDataSuccess) {
             switch (view.getId()) {
@@ -130,7 +135,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
                      * 提现
                      */
                     if (FastClickUtils.isNormalClick()) {
-
+                        presenter.startWithDraw(mAgentCenterData.getInfo().getUserId());
                     }
                     break;
                 case R.id.action_right_tv:
@@ -162,6 +167,12 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
                         startActivity(intent);
                     }
                     break;
+                case R.id.diamond_agent_center_referee_submit:
+                    String refereeCode=mCenterRefereeEdit.getText().toString();
+                    if(!TextUtils.isEmpty(refereeCode)&&FastClickUtils.isNormalClick()){
+                        presenter.addLowerLevel(mAgentCenterData.getInfo().getUserId(),refereeCode);
+                    }
+                    break;
 
                 default:
                     break;
@@ -191,6 +202,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
         mCenterSurplusDays.setText(getString(R.string.diamond_agent_center_surplus_days_title, (df.format(mAgentCenterData.getInfo().getValidDays()) + "")));
         mCenterBalanceTitle.setText(getBalanceTitle(getResources().getString(R.string.diamond_agent_center_balance_title, ("￥" + getDefaultZero(mAgentCenterData.getInfo().getMoney())))));
         mCenterRenenTitle.setText(getRenenTitle(getResources().getString(R.string.diamond_agent_center_renew_logo_title, getDefaultZero(mAgentCenterData.getRenewPrice()))));
+        mCenterRefereeTitleView.setVisibility(TextUtils.isEmpty(mAgentCenterData.getInfo().getLevel1())?View.VISIBLE:View.GONE);
     }
 
     @Override
@@ -211,6 +223,16 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
     }
 
     @Override
+    public void addLowerLevelSucess() {
+        mCenterRefereeTitleView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void addLowerLevelFail(String msg) {
+        ToastUtils.showShort(this,msg);
+    }
+
+    @Override
     public void loadFailure(Throwable throwable) {
 
 
@@ -223,7 +245,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
 
     private void getUserInfoData() {
         if (presenter != null) {
-            presenter.getUserInfo("2");
+            presenter.getUserInfo("1");
         }
     }
 

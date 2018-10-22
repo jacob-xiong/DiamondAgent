@@ -37,11 +37,11 @@ public interface ApiService {
     /**
      * 发起退款
      *
-     * @param id
+     * @param userId
      * @return
      */
     @POST("XXX/XXX")
-    Observable<BaseResultData> startWithDraw(@Query("id") String id);
+    Observable<BaseResultData> startWithDraw(@Field("userId") String userId);
 
     /**
      * 成员列表页面
@@ -56,4 +56,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("XXX/XXX")
     Observable<BaseResultData<MemberGroupData>> getMemberDetailListData(@Field("id") String id, @Field("level") String level, @Field("pageNo") int pageNo);
+
+    @FormUrlEncoded
+    @POST("/bee/a/api/bee/addLowerLevel")
+    Observable<BaseResultData> addLowerLevel(@Field("userId") String userId,@Field("code")String code);
+
 }
