@@ -25,6 +25,7 @@ import diamond.agent.mvp.presenter.AgentCenterPresenter;
 import diamond.agent.mvp.view.AgentCenterView;
 import diamond.agent.utils.FastClickUtils;
 import diamond.agent.utils.ToastUtils;
+import diamond.agent.utils.User;
 
 /**
  * @author by xiongyan on 2018/9/13.
@@ -135,7 +136,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
                      * 提现
                      */
                     if (FastClickUtils.isNormalClick()) {
-                        presenter.startWithDraw(mAgentCenterData.getInfo().getUserId());
+                        presenter.startWithDraw(mAgentCenterData.getInfo().getUserId(),mAgentCenterData.getInfo().getMoney());
                     }
                     break;
                 case R.id.action_right_tv:
@@ -189,7 +190,13 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
             isGetDataSuccess = true;
             mCenterALiPayCheckBox.setEnabled(true);
             setDataToView();
+            setDataToUser();
         }
+    }
+
+    private void setDataToUser() {
+        User.userId=mAgentCenterData.getInfo().getUserId();
+        User.userName=mAgentCenterData.getInfo().getUserName();
     }
 
     private void setDataToView() {
@@ -214,12 +221,12 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
 
     @Override
     public void startWithDrawSuccess() {
-
+        ToastUtils.showShort(this,"提现成功");
     }
 
     @Override
     public void startWithDrawFail(String msg) {
-
+        ToastUtils.showShort(this,msg);
     }
 
     @Override
@@ -245,7 +252,7 @@ public class DiamondAgentCenterActivity extends BaseActivity<AgentCenterPresente
 
     private void getUserInfoData() {
         if (presenter != null) {
-            presenter.getUserInfo("1");
+            presenter.getUserInfo("2");
         }
     }
 

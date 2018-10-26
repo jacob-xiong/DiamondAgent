@@ -18,18 +18,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import diamond.agent.R;
 import diamond.agent.activity.MemberDetailActivity;
 import diamond.agent.mvp.data.BaseResultData;
+import diamond.agent.mvp.data.LevelVO;
 import diamond.agent.mvp.data.MemberGroupData;
 import diamond.agent.mvp.data.MemberItemData;
+import diamond.agent.mvp.data.MemberLevelData;
 import diamond.agent.mvp.data.MemberListData;
 import diamond.agent.mvp.presenter.MemberListPresenter;
 import diamond.agent.mvp.view.MemberListView;
 import diamond.agent.utils.FastClickUtils;
 import diamond.agent.utils.ScreenUtils;
+import diamond.agent.utils.User;
 
 /**
  * Created by Jacob on 2018-9-18.
@@ -90,7 +94,9 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
     private boolean isVisibleToUser = false;
     private boolean isCreateView = false;
     private boolean isGetDataSuccess = false;
-    private MemberListData mMemberListData;
+    private MemberLevelData mMemberListData;
+    private double allBuyMoney;
+    private double allRebateMoney;
 
     public static Fragment newInstance(int pageIndex) {
         MemberListFragment fragment = new MemberListFragment();
@@ -119,27 +125,46 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
 
     @Override
     protected void loadData() {
-
+        if (isVisibleToUser && !isGetDataSuccess && presenter != null) {
+            presenter.getMemberListData(User.userId,getTypeByPageIndex(mPageIndex));
+        }
     }
 
     @Override
     protected void initView(View view) {
-        if (isVisibleToUser && !isGetDataSuccess && presenter != null) {
-            presenter.getMemberListData("id");
-        }
 
+
+    }
+
+    private String getTypeByPageIndex(int mPageIndex) {
+        String str="";
+        switch (mPageIndex){
+            case 0:
+                str="";
+                break;
+            case 1:
+                str="month";
+                break;
+            case 2:
+                str="day";
+                break;
+                default:
+                    break;
+        }
+        return str;
     }
 
 
     private void initView() {
         if (mMemberListData != null) {
-            mFirstConsumer.setText(getListTitle(5, getString(R.string.diamond_agent_consumer_first_consumer, getDefaultZero(mMemberListData.getFirstMemberNum()))));
-            mSecondConsumer.setText(getListTitle(5, getString(R.string.diamond_agent_consumer_second_consumer, getDefaultZero(mMemberListData.getSecondMemberNum()))));
-            mThreeConsumer.setText(getListTitle(5, getString(R.string.diamond_agent_consumer_three_consumer, getDefaultZero(mMemberListData.getThreeMemberNum()))));
-            mAllMember.setText(getListTitle(4, getString(R.string.diamond_agent_consumer_all_member, getDefaultZero(mMemberListData.getTotalNum()))));
-            mMemberNumTotal.setText(getString(R.string.diamond_agent_center_person, getDefaultZero(mMemberListData.getTotalNum())));
-            mMemberConsumpTionTotal.setText(getString(R.string.diamond_agent_center_amount, getDefaultZero(mMemberListData.getTotalConsumed())));
-            mMemberExtractTotal.setText(getString(R.string.diamond_agent_center_amount, getDefaultZero(mMemberListData.getTotalCommission())));
+            initAllMoney();
+            mFirstConsumer.setText(getListTitle(5, getString(R.string.diamond_agent_consumer_first_consumer, mMemberListData.getLevel1().size()+"")));
+            mSecondConsumer.setText(getListTitle(5, getString(R.string.diamond_agent_consumer_second_consumer, mMemberListData.getLevel2().size()+"")));
+            mThreeConsumer.setText(getListTitle(5, getString(R.string.diamond_agent_consumer_three_consumer, mMemberListData.getLevel3().size()+"")));
+            mAllMember.setText(getListTitle(4, getString(R.string.diamond_agent_consumer_all_member, (mMemberListData.getLevel1().size()+mMemberListData.getLevel2().size()+mMemberListData.getLevel3().size())+"")));
+            mMemberNumTotal.setText(getString(R.string.diamond_agent_center_person,(mMemberListData.getLevel1().size()+mMemberListData.getLevel2().size()+mMemberListData.getLevel3().size())+""));
+            mMemberConsumpTionTotal.setText(getString(R.string.diamond_agent_center_amount, String.valueOf(allBuyMoney)));
+            mMemberExtractTotal.setText(getString(R.string.diamond_agent_center_amount, String.valueOf(allRebateMoney)));
             prePareListView();
             prepareMemberListVerticalLine();
         }
@@ -151,17 +176,9 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
         if (mGroupListView.getChildCount() == 3) {
             return;
         }
-        if (mMemberListData.getMemberLevelDataList() == null) {
-            return;
-        }
-        for (int i = 0; i < mMemberListData.getMemberLevelDataList().size(); i++) {
-            MemberGroupData groupData = mMemberListData.getMemberLevelDataList().get(i);
-            if (groupData == null) {
-                return;
-            }
-            if (groupData.getMemberLevelItemList() == null) {
-                return;
-            }
+
+        for (int i = 0; i < 3; i++) {
+
             View groupView = LayoutInflater.from(getContext()).inflate(R.layout.member_group_list_item, mGroupListView, false);
             final View queryLevel = groupView.findViewById(R.id.query_detail);
             queryLevel.setTag(i);
@@ -173,44 +190,68 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
                     }
                 }
             });
+            final int index=i;
             LinearLayout itemLinearLayout = (LinearLayout) groupView.findViewById(R.id.member_group_list_item_view);
-            for (int j = 0; j < groupData.getMemberLevelItemList().size() + 2; j++) {
-
-                View itemView = LayoutInflater.from(getContext()).inflate(R.layout.member_group_value_item, itemLinearLayout, false);
-                TextView consumerInTotal = (TextView) itemView.findViewById(R.id.consumer_in_total);
-                TextView consumerTitle = (TextView) itemView.findViewById(R.id.consumer_title);
-                TextView consumerAlreadyUse = (TextView) itemView.findViewById(R.id.consumer_already_use);
-                TextView consumerExtract = (TextView) itemView.findViewById(R.id.consumer_item_extract);
-                if (j == 0) {
-                    itemView.setPadding(0, ScreenUtils.dip2px(getContext(), 5), 0, ScreenUtils.dip2px(getContext(), 8));
-                    consumerTitle.setText(getItemTitle(i));
-                } else if (0 < j && j < groupData.getMemberLevelItemList().size() + 1) {
-                    MemberItemData itemData = groupData.getMemberLevelItemList().get(j - 1);
-                    if (itemData == null) {
-                        return;
-                    }
-                    itemView.setPadding(0, 0, 0, 0);
-                    consumerTitle.setText(itemData.getMemberId());
-                    consumerAlreadyUse.setText(getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(itemData.getMemberConsumed())));
-                    consumerExtract.setText(getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(itemData.getMemberCommission())));
-
-                } else if (j == groupData.getMemberLevelItemList().size() + 1) {
-                    consumerInTotal.setVisibility(View.VISIBLE);
-                    consumerInTotal.setTextColor(Color.parseColor("#FF8C00"));
-                    consumerTitle.setTextColor(Color.parseColor("#FF8C00"));
-                    consumerAlreadyUse.setTextColor(Color.parseColor("#FF8C00"));
-                    consumerExtract.setTextColor(Color.parseColor("#FF8C00"));
-                    consumerTitle.setText(getResources().getString(R.string.diamond_agent_center_person, getDefaultZero(groupData.getMemberLevelAllNum())));
-                    consumerAlreadyUse.setText(getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(groupData.getMemberLevelAllConsumed())));
-                    consumerExtract.setText(getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(groupData.getGetMemberLevelAllNumCommission())));
-                    itemView.setPadding(0, ScreenUtils.dip2px(getContext(), 8), 0, ScreenUtils.dip2px(getContext(), 5));
-                }
-
-                itemLinearLayout.addView(itemView);
-
-
-            }
+            initItemView(getLevelList(index),itemLinearLayout,index);
             mGroupListView.addView(groupView);
+        }
+
+    }
+
+    private List<LevelVO> getLevelList(int index){
+        switch (index){
+            case 0:
+                return  mMemberListData.getLevel1();
+            case 1:
+                return  mMemberListData.getLevel2();
+            case 2:
+                return  mMemberListData.getLevel3();
+        }
+        return new ArrayList<>();
+    }
+
+    private void initItemView(List<LevelVO> list,LinearLayout itemLinearLayout,int index){
+        double itemAllBuyMoney=0.0;
+        double itemAllRebateMoney=0.0;
+        for (int j = 0; j < list.size() + 2; j++) {
+
+            View itemView = LayoutInflater.from(getContext()).inflate(R.layout.member_group_value_item, itemLinearLayout, false);
+            TextView consumerInTotal = (TextView) itemView.findViewById(R.id.consumer_in_total);
+            TextView consumerTitle = (TextView) itemView.findViewById(R.id.consumer_title);
+            TextView consumerAlreadyUse = (TextView) itemView.findViewById(R.id.consumer_already_use);
+            TextView consumerExtract = (TextView) itemView.findViewById(R.id.consumer_item_extract);
+
+            if (j == 0) {
+                itemView.setPadding(0, ScreenUtils.dip2px(getContext(), 5), 0, ScreenUtils.dip2px(getContext(), 5));
+                consumerTitle.setText(getItemTitle(index));
+            } else if (0 < j && j < list.size() + 1) {
+                LevelVO itemData = list.get(j - 1);
+                if (itemData == null) {
+                    return;
+                }
+                itemView.setPadding(0, ScreenUtils.dip2px(getContext(), 5), 0, 0);
+                consumerTitle.setText(itemData.getLevel1Name());
+                consumerAlreadyUse.setText(getResources().getString(R.string.diamond_agent_center_amount, String.valueOf(itemData.getBuyMoney())));
+                consumerExtract.setText(getResources().getString(R.string.diamond_agent_center_amount,String.valueOf(itemData.getRebateMoney())));
+                itemAllBuyMoney=itemAllBuyMoney+itemData.getBuyMoney();
+                itemAllRebateMoney=itemAllRebateMoney+itemData.getRebateMoney();
+
+
+            } else if (j == list.size() + 1) {
+                consumerInTotal.setVisibility(View.VISIBLE);
+                consumerInTotal.setTextColor(Color.parseColor("#FF8C00"));
+                consumerTitle.setTextColor(Color.parseColor("#FF8C00"));
+                consumerAlreadyUse.setTextColor(Color.parseColor("#FF8C00"));
+                consumerExtract.setTextColor(Color.parseColor("#FF8C00"));
+                consumerTitle.setText(getResources().getString(R.string.diamond_agent_center_person, list.size()+""));
+                consumerAlreadyUse.setText(getResources().getString(R.string.diamond_agent_center_amount, String.valueOf(itemAllBuyMoney)));
+                consumerExtract.setText(getResources().getString(R.string.diamond_agent_center_amount, String.valueOf(itemAllRebateMoney)));
+                itemView.setPadding(0, ScreenUtils.dip2px(getContext(), 8), 0, ScreenUtils.dip2px(getContext(), 5));
+            }
+
+            itemLinearLayout.addView(itemView);
+
+
         }
     }
 
@@ -272,13 +313,13 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
             if (presenter == null) {
                 presenter = new MemberListPresenter(this, getActivity());
             }
-            presenter.getMemberListData("id");
+            presenter.getMemberListData(User.userId,getTypeByPageIndex(mPageIndex));
 
         }
     }
 
     @Override
-    public void getMemberListSuccess(MemberListData resultData) {
+    public void getMemberListSuccess(MemberLevelData resultData) {
 
         isGetDataSuccess = resultData != null;
         if (resultData != null) {
@@ -304,36 +345,7 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
 
     @Override
     public void loadFailure(Throwable throwable) {
-        MemberListData resultData = new MemberListData();
-        resultData.setFirstMemberNum("100");
-        resultData.setSecondMemberNum("1200");
-        resultData.setThreeMemberNum("1500");
-        resultData.setTotalNum("2000");
-        resultData.setTotalConsumed("5000");
-        resultData.setTotalCommission("3000");
-        ArrayList<MemberGroupData> list = new ArrayList<>();
-        for (int j = 0; j < 3; j++) {
-            MemberGroupData groupData = new MemberGroupData();
-            groupData.setGetMemberLevelAllNumCommission("300");
-            groupData.setMemberLevelAllConsumed("500");
-            groupData.setMemberLevelAllNum("100");
-            ArrayList<MemberItemData> itemDataList = new ArrayList<>();
-            for (int i = 0; i < 4; i++) {
-                MemberItemData itemData = new MemberItemData();
-                itemData.setMemberId("WH" + "00" + i);
-                itemData.setMemberCommission(i * 200 + "");
-                itemData.setMemberConsumed(i * 100 + "");
-                itemDataList.add(itemData);
-            }
-            groupData.setMemberLevelItemList(itemDataList);
-            list.add(groupData);
-        }
-        resultData.setMemberLevelDataList(list);
-        isGetDataSuccess = true;
-        if (resultData != null) {
-            mMemberListData = resultData;
-            initView();
-        }
+
     }
 
     @Override
@@ -351,5 +363,20 @@ public class MemberListFragment extends BaseFragment<MemberListPresenter> implem
         style.setSpan((new ForegroundColorSpan(Color.parseColor("#999999"))), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         style.setSpan((new ForegroundColorSpan(Color.parseColor("#FF8C00"))), length + 1, str.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return style;
+    }
+
+    public void initAllMoney() {
+        for(LevelVO levelVO:mMemberListData.getLevel1()){
+            allBuyMoney=allBuyMoney+levelVO.getBuyMoney();
+            allRebateMoney=allRebateMoney+levelVO.getRebateMoney();
+        }
+        for(LevelVO levelVO:mMemberListData.getLevel2()){
+            allBuyMoney=allBuyMoney+levelVO.getBuyMoney();
+            allRebateMoney=allRebateMoney+levelVO.getRebateMoney();
+        }
+        for(LevelVO levelVO:mMemberListData.getLevel3()){
+            allBuyMoney=allBuyMoney+levelVO.getBuyMoney();
+            allRebateMoney=allRebateMoney+levelVO.getRebateMoney();
+        }
     }
 }

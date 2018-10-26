@@ -13,6 +13,7 @@ import diamond.agent.adapter.MemberDetailAdapter;
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.MemberGroupData;
 import diamond.agent.mvp.data.MemberItemData;
+import diamond.agent.mvp.data.MemberLevelData;
 import diamond.agent.mvp.data.MemberListData;
 import diamond.agent.mvp.presenter.MemberListPresenter;
 import diamond.agent.mvp.view.MemberListView;
@@ -78,8 +79,9 @@ public class MemberDetailActivity extends BaseActivity<MemberListPresenter> impl
         queryLevel = TextUtils.isEmpty(queryLevel) ? "-1" : queryLevel;
     }
 
+
     @Override
-    public void getMemberListSuccess(MemberListData resultData) {
+    public void getMemberListSuccess(MemberLevelData resultData) {
 
     }
 

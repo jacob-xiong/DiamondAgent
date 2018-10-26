@@ -4,6 +4,7 @@ import android.content.Context;
 
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.MemberGroupData;
+import diamond.agent.mvp.data.MemberLevelData;
 import diamond.agent.mvp.data.MemberListData;
 import diamond.agent.mvp.model.BaseDataBridge;
 import diamond.agent.mvp.model.MemberListModel;
@@ -26,7 +27,7 @@ public class MemberListPresenter extends BasePresenter<MemberListView, MemberLis
     }
 
     @Override
-    public void onSuccess(BaseResultData<MemberListData> data) {
+    public void onSuccess(BaseResultData<MemberLevelData> data) {
 
     }
 
@@ -36,7 +37,7 @@ public class MemberListPresenter extends BasePresenter<MemberListView, MemberLis
     }
 
     @Override
-    public void getMemberListSuccess(BaseResultData<MemberListData> resultData) {
+    public void getMemberListSuccess(BaseResultData<MemberLevelData> resultData) {
         view.getMemberListSuccess(resultData.getData());
     }
 
@@ -56,8 +57,8 @@ public class MemberListPresenter extends BasePresenter<MemberListView, MemberLis
     }
 
 
-    public void getMemberListData(String id) {
-        addSubscription(model.getMemberListData(id));
+    public void getMemberListData(String userId,String type) {
+        addSubscription(model.getMemberListData(userId,type));
     }
 
     public void getMemberDetailListData(String id, String level,int pageNo) {

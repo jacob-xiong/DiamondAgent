@@ -35,7 +35,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp5"
-                android:text="fdafda"
                 android:textColor="@color/member_list_text_color"
                 android:textSize="@dimen/sp14" />
 
@@ -44,7 +43,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp5"
-                android:text="fdafda"
                 android:textColor="@color/member_list_text_color"
                 android:textSize="@dimen/sp14" />
 
@@ -59,7 +57,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="fdafdafda"
                     android:textColor="@color/member_list_text_color"
                     android:textSize="@dimen/sp14" />
 
@@ -68,7 +65,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="fdafdafda"
                     android:textColor="@color/member_list_text_color"
                     android:textSize="@dimen/sp14" />
             </LinearLayout>
@@ -183,7 +179,6 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="1000人"
                     android:textColor="@color/center_surplus_days"
                     android:textSize="@dimen/sp14" />
 
@@ -200,7 +195,6 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="1000元"
                     android:textColor="@color/center_surplus_days"
                     android:textSize="@dimen/sp14" />
 
@@ -218,7 +212,6 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="10000元"
                     android:textColor="@color/center_surplus_days"
                     android:textSize="@dimen/sp14" />
 

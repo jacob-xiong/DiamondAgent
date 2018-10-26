@@ -4,6 +4,7 @@ import diamond.agent.mvp.data.AgentCenterData;
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.InvitationCodeResultData;
 import diamond.agent.mvp.data.MemberGroupData;
+import diamond.agent.mvp.data.MemberLevelData;
 import diamond.agent.mvp.data.MemberListData;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -35,20 +36,21 @@ public interface ApiService {
     Observable<BaseResultData<AgentCenterData>> getUserInfo(@Field("userId") String id);
 
     /**
-     * 发起退款
+     * 提现
      *
      * @param userId
      * @return
      */
-    @POST("XXX/XXX")
-    Observable<BaseResultData> startWithDraw(@Field("userId") String userId);
+    @FormUrlEncoded
+    @POST("/bee/a/api/bee/transfer")
+    Observable<BaseResultData> startWithDraw(@Field("userId") String userId,@Field("amount")String amount,@Field("payee_account")String payee_account,@Field("payee_real_name") String payee_real_name,@Field("remark")String remark);
 
     /**
      * 成员列表页面
      */
     @FormUrlEncoded
-    @POST("XXX/XXX")
-    Observable<BaseResultData<MemberListData>> getMemberListData(@Field("id") String id);
+    @POST("/bee/a/api/bee/getLowerLevel")
+    Observable<BaseResultData<MemberLevelData>> getMemberListData(@Field("userId") String userId, @Field("time") String time);
 
     /**
      * 各级成员列表页面

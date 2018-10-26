@@ -4,6 +4,7 @@ import diamond.agent.mvp.data.AgentCenterData;
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.InvitationCodeResultData;
 import diamond.agent.mvp.data.MemberGroupData;
+import diamond.agent.mvp.data.MemberLevelData;
 import diamond.agent.mvp.data.MemberListData;
 
 /**
@@ -53,8 +54,8 @@ public interface BaseDataBridge<T extends BaseResultData> {
 
     }
 
-    interface MemberDataListBridge extends BaseDataBridge<BaseResultData<MemberListData>> {
-        void getMemberListSuccess(BaseResultData<MemberListData> resultData);
+    interface MemberDataListBridge extends BaseDataBridge<BaseResultData<MemberLevelData>> {
+        void getMemberListSuccess(BaseResultData<MemberLevelData> resultData);
 
         void getMemberListFail(String msg);
 

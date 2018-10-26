@@ -36,8 +36,8 @@ public class AgentCenterModel extends BaseModel<BaseDataBridge.AgentCenterDataBr
         });
     }
 
-    public Subscription startWithDraw(String id) {
-        return NetWorkClient.getApiService().startWithDraw(id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData>() {
+    public Subscription startWithDraw(String userId,String amount) {
+        return NetWorkClient.getApiService().startWithDraw(userId,amount,"sxwiuc7317@sandbox.com","沙箱环境","提现测试").subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData>() {
             @Override
             public void call(BaseResultData baseResultData) {
                 if (ApiHost.CLIENT_SUCCESS_CODE.equals(baseResultData.getStatus())) {

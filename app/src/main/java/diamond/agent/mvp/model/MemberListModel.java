@@ -4,6 +4,7 @@ import diamond.agent.client.ApiHost;
 import diamond.agent.client.NetWorkClient;
 import diamond.agent.mvp.data.BaseResultData;
 import diamond.agent.mvp.data.MemberGroupData;
+import diamond.agent.mvp.data.MemberLevelData;
 import diamond.agent.mvp.data.MemberListData;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -21,10 +22,10 @@ public class MemberListModel extends BaseModel<BaseDataBridge.MemberDataListBrid
         this.dataBridge = dataListBridge;
     }
 
-    public Subscription getMemberListData(String id) {
-        return NetWorkClient.getApiService().getMemberListData(id).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData<MemberListData>>() {
+    public Subscription getMemberListData(String userId,String type) {
+        return NetWorkClient.getApiService().getMemberListData(userId,type).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseResultData<MemberLevelData>>() {
             @Override
-            public void call(BaseResultData<MemberListData> resultData) {
+            public void call(BaseResultData<MemberLevelData> resultData) {
                 if (ApiHost.CLIENT_SUCCESS_CODE.equals(resultData.getStatus())) {
                     dataBridge.getMemberListSuccess(resultData);
                 } else {

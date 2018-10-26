@@ -69,8 +69,8 @@ public class AgentCenterPresenter extends BasePresenter<AgentCenterView, AgentCe
         addSubscription(model.getUserInfo(id));
     }
 
-    public void startWithDraw(String id) {
-        addSubscription(model.startWithDraw(id));
+    public void startWithDraw(String userId,String amount) {
+        addSubscription(model.startWithDraw(userId,amount));
     }
     public void addLowerLevel(String userId,String code){
         addSubscription(model.addLowerLevel(userId,code));
