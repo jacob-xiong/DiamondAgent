@@ -5,12 +5,15 @@ import android.text.TextUtils;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import diamond.agent.R;
 import diamond.agent.adapter.MemberDetailAdapter;
 import diamond.agent.mvp.data.BaseResultData;
+import diamond.agent.mvp.data.LevelVO;
 import diamond.agent.mvp.data.MemberGroupData;
 import diamond.agent.mvp.data.MemberItemData;
 import diamond.agent.mvp.data.MemberLevelData;
@@ -25,14 +28,15 @@ import diamond.agent.utils.ToastUtils;
  */
 public class MemberDetailActivity extends BaseActivity<MemberListPresenter> implements MemberDetailAdapter.MemberDetailListener, MemberListView, XRecyclerView.LoadingListener {
     public static final String QUERY_LEVEL = "query_level";
+    public static final String LEVEL_DATA = "level_data";
     private String queryLevel;
     private int pageNo = 1;
     private int pageCount;
     @BindView(R.id.member_detail_list_view)
     XRecyclerView mXRecyclerView;
     private MemberDetailAdapter mMemberDetailAdapter;
-    private MemberGroupData mMemberGroupData = new MemberGroupData();
     private boolean isShowHint = true;
+    private List<LevelVO> mLevelVoListData;
 
 
     @Override
@@ -58,8 +62,8 @@ public class MemberDetailActivity extends BaseActivity<MemberListPresenter> impl
 
     @Override
     protected void loadData() {
-        pageNo = 1;
-        getData();
+//        pageNo = 1;
+//        getData();
     }
 
     @Override
@@ -68,8 +72,7 @@ public class MemberDetailActivity extends BaseActivity<MemberListPresenter> impl
         mXRecyclerView.setPullRefreshEnabled(false);
         mXRecyclerView.setLoadingListener(this);
         mXRecyclerView.setLoadingMoreEnabled(true);
-        mMemberGroupData.setMemberLevelItemList(new ArrayList<MemberItemData>());
-        mMemberDetailAdapter = new MemberDetailAdapter(this, mMemberGroupData, this, Integer.parseInt(queryLevel));
+        mMemberDetailAdapter = new MemberDetailAdapter(this, mLevelVoListData, this, Integer.parseInt(queryLevel));
         mXRecyclerView.setAdapter(mMemberDetailAdapter);
     }
 
@@ -77,6 +80,10 @@ public class MemberDetailActivity extends BaseActivity<MemberListPresenter> impl
     protected void initIntent() {
         queryLevel = getIntent().getStringExtra(QUERY_LEVEL);
         queryLevel = TextUtils.isEmpty(queryLevel) ? "-1" : queryLevel;
+        Serializable serializable = getIntent().getSerializableExtra(LEVEL_DATA);
+        if (serializable != null) {
+            mLevelVoListData = (List<LevelVO>) serializable;
+        }
     }
 
 
@@ -95,8 +102,6 @@ public class MemberDetailActivity extends BaseActivity<MemberListPresenter> impl
         mXRecyclerView.loadMoreComplete();
         pageCount = resultData.getTotalPages();
         if (resultData.getMemberLevelItemList() != null && resultData.getMemberLevelItemList().size() > 0) {
-            mMemberGroupData = resultData;
-            mMemberDetailAdapter.setGroupData(mMemberGroupData);
         }
     }
 
@@ -107,20 +112,6 @@ public class MemberDetailActivity extends BaseActivity<MemberListPresenter> impl
 
     @Override
     public void loadFailure(Throwable throwable) {
-        mMemberGroupData = new MemberGroupData();
-        mMemberGroupData.setGetMemberLevelAllNumCommission("300");
-        mMemberGroupData.setMemberLevelAllConsumed("500");
-        mMemberGroupData.setMemberLevelAllNum("100");
-        ArrayList<MemberItemData> itemDataList = new ArrayList<>();
-        for (int i = 0; i < 40; i++) {
-            MemberItemData itemData = new MemberItemData();
-            itemData.setMemberId("WH" + "00" + i);
-            itemData.setMemberCommission(i * 200 + "");
-            itemData.setMemberConsumed(i * 100 + "");
-            itemDataList.add(itemData);
-        }
-        mMemberGroupData.setMemberLevelItemList(itemDataList);
-        mMemberDetailAdapter.setGroupData(mMemberGroupData);
 
     }
 

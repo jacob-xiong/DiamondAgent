@@ -14,6 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import diamond.agent.R;
+import diamond.agent.mvp.data.LevelVO;
 import diamond.agent.mvp.data.MemberGroupData;
 import diamond.agent.mvp.data.MemberItemData;
 import diamond.agent.utils.ScreenUtils;
@@ -24,22 +25,17 @@ import diamond.agent.utils.ScreenUtils;
 public class MemberDetailAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private LayoutInflater mInflater;
-    private List<MemberItemData> itemList;
+    private List<LevelVO> itemList;
     private MemberDetailListener listener;
-    private MemberGroupData resultData;
     private int queryLevel;
+    private double itemAllBuyMoney = 0.0;
+    private double itemAllRebateMoney = 0.0;
 
-    public void setGroupData(MemberGroupData data) {
-        resultData = data;
-        itemList = data.getMemberLevelItemList();
-        notifyDataSetChanged();
-    }
 
-    public MemberDetailAdapter(Context context, MemberGroupData resultData, MemberDetailListener orderStateListener, int queryLevel) {
-        this.resultData = resultData;
+    public MemberDetailAdapter(Context context, List<LevelVO> resultData, MemberDetailListener orderStateListener, int queryLevel) {
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
-        this.itemList = resultData.getMemberLevelItemList();
+        this.itemList = resultData;
         this.listener = orderStateListener;
         this.queryLevel = queryLevel;
     }
@@ -57,24 +53,26 @@ public class MemberDetailAdapter extends RecyclerView.Adapter {
         View itemView = itemViewHolder.itemView;
         if (position == 0) {
             setTitleIsShow(itemViewHolder, false);
-            itemView.setPadding(0, ScreenUtils.dip2px(mContext, 5), 0, ScreenUtils.dip2px(mContext, 8));
+            itemView.setPadding(0, ScreenUtils.dip2px(mContext, 8), 0, ScreenUtils.dip2px(mContext, 5));
             itemViewHolder.consumerTitle.setText(getItemTitle(queryLevel));
         } else if (0 < position && position < itemList.size() + 1) {
             setTitleIsShow(itemViewHolder, false);
-            MemberItemData itemData = itemList.get(position - 1);
+            LevelVO itemData = itemList.get(position - 1);
             if (itemData == null) {
                 return;
             }
-            itemView.setPadding(0, 0, 0, 0);
-            itemViewHolder.consumerTitle.setText(itemData.getMemberId());
-            itemViewHolder.consumerAlreadyUse.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(itemData.getMemberConsumed())));
-            itemViewHolder.consumerExtract.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(itemData.getMemberCommission())));
+            itemView.setPadding(0, ScreenUtils.dip2px(mContext, 5), 0, 0);
+            itemViewHolder.consumerTitle.setText(itemData.getLevel1Name());
+            itemViewHolder.consumerAlreadyUse.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, String.valueOf(itemData.getBuyMoney())));
+            itemViewHolder.consumerExtract.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, String.valueOf(itemData.getRebateMoney())));
+            itemAllBuyMoney = itemAllBuyMoney + itemData.getBuyMoney();
+            itemAllRebateMoney = itemAllRebateMoney + itemData.getRebateMoney();
 
         } else if (position == itemList.size() + 1) {
             setTitleIsShow(itemViewHolder, true);
-            itemViewHolder.consumerTitle.setText(mContext.getResources().getString(R.string.diamond_agent_center_person, getDefaultZero(resultData.getMemberLevelAllNum())));
-            itemViewHolder.consumerAlreadyUse.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(resultData.getMemberLevelAllConsumed())));
-            itemViewHolder.consumerExtract.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, getDefaultZero(resultData.getGetMemberLevelAllNumCommission())));
+            itemViewHolder.consumerTitle.setText(mContext.getResources().getString(R.string.diamond_agent_center_person, itemList.size() + ""));
+            itemViewHolder.consumerAlreadyUse.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, String.valueOf(itemAllBuyMoney)));
+            itemViewHolder.consumerExtract.setText(mContext.getResources().getString(R.string.diamond_agent_center_amount, String.valueOf(itemAllRebateMoney)));
             itemView.setPadding(0, ScreenUtils.dip2px(mContext, 8), 0, ScreenUtils.dip2px(mContext, 5));
         }
 
